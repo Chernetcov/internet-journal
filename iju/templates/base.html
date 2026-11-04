@@ -1,0 +1,148 @@
+{% load tailwind_cli %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{% block description %}Культурный код — журнал о философии, литературе, искусстве и кино. Эссе, рецензии и идеи, которые помогают иначе смотреть на мир.{% endblock %}">
+  <title>{% block title %}Культурный код{% endblock %}</title>
+  <!--— журнал о культуре и идеях -->
+  {% tailwind_css %}
+
+</head>
+
+<body class="font-body antialiased">
+  <a href="#main" class="focus-ring sr-only z-50 rounded bg-paper px-4 py-2 text-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
+    Перейти к содержанию
+  </a>
+
+  <!-- Header -->
+  <header class="border-b border-line">
+    <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
+      <div class="flex min-h-[88px] items-center justify-between gap-4 py-4">
+        <a href="{% url 'index' %}" class="focus-ring shrink-0" aria-label="Культурный код — главная">
+          <span class="block font-display text-[1.8rem] font-bold leading-none tracking-[-0.045em] sm:text-4xl">Культурный код</span>
+          <span class="mt-2 hidden text-[10px] uppercase tracking-[.19em] text-graphite sm:block">Философия · Литература · Искусство · Кино</span>
+        </a>
+
+        <nav class="hidden items-center gap-5 xl:flex" aria-label="Основная навигация">
+          <a class="focus-ring text-sm hover:text-terracotta" href="{% url 'index' %}">Главная</a>
+          <a class="focus-ring text-sm hover:text-terracotta" href="{% url 'articles' %}">Статьи</a>
+          <a class="focus-ring text-sm hover:text-terracotta" href="#categories">Рубрики</a>
+          <a class="focus-ring text-sm hover:text-terracotta" href="#about">О журнале</a>
+        </nav>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button id="search-toggle" class="focus-ring rounded-full p-2 hover:bg-linen" aria-label="Открыть поиск" aria-expanded="false" aria-controls="search-panel">
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg>
+          </button>
+<!--          <a href="#newsletter" class="focus-ring hidden bg-ink px-4 py-3 text-sm text-white transition hover:bg-terracotta sm:inline-flex">Подписаться</a>-->
+<!--          <button id="menu-toggle" class="focus-ring rounded-full p-2 hover:bg-linen xl:hidden" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">-->
+<!--            <svg id="menu-icon" viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>-->
+<!--          </button>-->
+        </div>
+      </div>
+
+      <form id="search-panel" class="hidden border-t border-line py-4" role="search">
+        <label for="site-search" class="sr-only">Поиск по журналу</label>
+        <div class="flex gap-2">
+          <input id="site-search" type="search" placeholder="Найти статью, автора или тему…" class="focus-ring min-w-0 flex-1 border border-line bg-white/70 px-4 py-3 text-sm outline-none">
+          <button class="focus-ring bg-ink px-5 py-3 text-sm text-white hover:bg-terracotta" type="submit">Искать</button>
+        </div>
+        <p id="search-message" class="mt-2 hidden text-sm text-graphite" aria-live="polite"></p>
+      </form>
+
+      <nav id="mobile-menu" class="hidden border-t border-line py-4 xl:hidden" aria-label="Мобильная навигация">
+        <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <a class="focus-ring py-2 text-sm hover:text-terracotta" href="#categories">Рубрики</a>
+          <a class="focus-ring py-2 text-sm hover:text-terracotta" href="#latest">Статьи</a>
+          <a class="focus-ring py-2 text-sm hover:text-terracotta" href="#popular">Популярное</a>
+          <a class="focus-ring py-2 text-sm hover:text-terracotta" href="#about">О журнале</a>
+          <a class="focus-ring col-span-2 bg-ink px-4 py-3 text-center text-sm text-white sm:col-span-4" href="#newsletter">Подписаться на рассылку</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="mx-auto max-w-[1440px] px-4 pb-12 pt-5 sm:px-6 sm:pt-7 lg:px-10">
+    {% block content %}
+    <!-- Основной контент -->
+    {% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer id="about" class="border-t border-line">
+    <div class="mx-auto flex max-w-[1440px] flex-col gap-6 px-4 py-7 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-10">
+      <div>
+        <a href="#" class="focus-ring font-display text-2xl font-bold tracking-tight">Культурный код</a>
+        <p class="mt-1 text-xs text-graphite">Место, где большие идеи встречаются с современным миром.</p>
+      </div>
+      <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-graphite" aria-label="Ссылки в подвале">
+        <a class="focus-ring hover:text-terracotta" href="#categories">Рубрики</a>
+        <a class="focus-ring hover:text-terracotta" href="#latest">Статьи</a>
+        <a class="focus-ring hover:text-terracotta" href="#newsletter">Рассылка</a>
+        <a class="focus-ring hover:text-terracotta" href="mailto:editor@example.com">Контакты</a>
+      </nav>
+      <p class="text-xs text-graphite">© <span id="year"></span> Культурный код</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const searchToggle = document.getElementById('search-toggle');
+    const searchPanel = document.getElementById('search-panel');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', isOpen);
+      menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Открыть меню' : 'Закрыть меню');
+    });
+
+    searchToggle.addEventListener('click', () => {
+      const isOpen = !searchPanel.classList.contains('hidden');
+      searchPanel.classList.toggle('hidden', isOpen);
+      searchToggle.setAttribute('aria-expanded', String(!isOpen));
+      if (!isOpen) document.getElementById('site-search').focus();
+    });
+
+    document.getElementById('search-panel').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const query = document.getElementById('site-search').value.trim();
+      const message = document.getElementById('search-message');
+      message.textContent = query
+        ? `Поиск «${query}» пока является демонстрацией. Подключите поисковый endpoint или поиск по CMS.`
+        : 'Введите название статьи, автора или тему.';
+      message.classList.remove('hidden');
+    });
+
+    document.getElementById('newsletter-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const email = document.getElementById('email');
+      const message = document.getElementById('newsletter-message');
+      if (!email.checkValidity()) {
+        email.reportValidity();
+        return;
+      }
+      message.textContent = 'Форма проверена, но подписка пока не отправлена: подключите сервис рассылок или backend endpoint.';
+      message.classList.remove('text-white/70');
+      message.classList.add('text-[#D6B99E]');
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Закрываем мобильное меню после перехода по пункту.
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Открыть меню');
+      });
+    });
+  </script>
+
+  {% block scripts %}
+  {% endblock %}
+</body>
+</html>

@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+
+{% block title %}{{article.title}} — {{ block.super }}{% endblock %}
+{% block description %}{{article.description}}{% endblock %}
+
+{% block content %}
+
+<!--  <nav class="mb-8 flex flex-wrap items-center gap-2 text-xs text-graphite" aria-label="Хлебные крошки">-->
+<!--    <a class="focus-ring hover:text-terracotta" href="index.html">Главная</a>-->
+<!--    <span aria-hidden="true">/</span>-->
+<!--    <a class="focus-ring hover:text-terracotta" href="#article-categories">Философия</a>-->
+<!--    <span aria-hidden="true">/</span>-->
+<!--    <span class="text-ink" aria-current="page">Эссе</span>-->
+<!--  </nav>-->
+
+  <article>
+    <header class="mx-auto max-w-4xl text-center">
+      <div class="mb-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[11px] font-bold uppercase tracking-[.15em] text-terracotta">
+        <a href="#article-categories" class="focus-ring">{{article.category.name}}</a>
+<!--        <span class="h-1 w-1 rounded-full bg-terracotta" aria-hidden="true"></span>-->
+<!--        <span>Эссе</span>-->
+      </div>
+      <h1 class="font-display text-4xl font-semibold leading-[1.08] tracking-[-.045em] sm:text-5xl md:text-6xl lg:text-7xl">
+        {{article.title}}
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl font-reading text-lg leading-relaxed text-graphite sm:text-xl">
+        {{article.description}}
+      </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-x-4 gap-y-3 border-y border-line py-4 text-xs text-graphite">
+<!--        <div class="flex items-center gap-3">-->
+<!--          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=96&q=80" alt="" class="h-10 w-10 rounded-full object-cover">-->
+<!--          <span class="text-left"><span class="block font-semibold text-ink">Алексей Миронов</span><span>Автор журнала</span></span>-->
+<!--        </div>-->
+<!--        <span class="hidden h-1 w-1 rounded-full bg-line sm:block" aria-hidden="true"></span>-->
+        <time datetime="{{ article.publicated | date:'Y-m-d'}}">{{ article.publicated | date:'d F Y'}}</time>
+        <span class="hidden h-1 w-1 rounded-full bg-line sm:block" aria-hidden="true"></span>
+        <span>{{article.time_to_read}} минут чтения</span>
+      </div>
+    </header>
+
+    <figure class="mx-auto mt-8 max-w-6xl sm:mt-12">
+      <div class="overflow-hidden bg-linen">
+        <img
+          src="{{article.image.url}}"
+          alt="Горный пейзаж в мягком утреннем свете"
+          class="max-h-[680px] w-full object-cover"
+          style="aspect-ratio: 16 / 8.2"
+        >
+      </div>
+      <figcaption class="flex flex-wrap justify-between gap-2 px-1">
+        <span>Иногда смысл начинается с внимательного взгляда на мир.</span>
+        <span>Фото: Unsplash</span>
+      </figcaption>
+    </figure>
+
+<!--    <div class="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-16">-->
+    <div class="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-10">
+      <div class="min-w-0">
+        <div class="article-body">
+          {{ article.content|safe }}
+
+<!--          <h2 id="silence">Молчание мира</h2>-->
+<!--          <p>Абсурд у Камю — не просто бессмысленность и не повод отказаться от жизни. Он возникает между двумя сторонами: человеком, который спрашивает, и миром, который не даёт окончательного ответа. Убрать одну из них — значит потерять саму проблему. Без нашего стремления к смыслу не было бы вопроса; без молчания мира не было бы столкновения.</p>-->
+
+<!--          <p>Мы часто пытаемся как можно скорее закрыть эту паузу. Объясняем неудачу уроком, случайность — судьбой, боль — необходимым этапом. Иногда такие объяснения помогают пережить трудное. Но они становятся ловушкой, если мы принимаем их не за возможный взгляд на происходящее, а за доказанную истину.</p>-->
+
+<!--          <blockquote>-->
+<!--            «Нужно представить себе Сизифа счастливым» — не потому, что его труд лёгок, а потому, что он больше не ждёт от камня обещания.-->
+<!--          </blockquote>-->
+
+<!--          <h2 id="sisyphus">Сизиф и свобода без гарантий</h2>-->
+          <p>В мифе Сизиф обречён снова и снова вкатывать камень на вершину горы. Камень неизбежно скатывается вниз, и работа начинается заново. Если оценивать её только по результату, перед нами образ абсолютного поражения: усилие не накапливается, цель не достигается, финального успеха не будет.</p>
+
+          <p>Но Камю предлагает посмотреть на Сизифа в тот момент, когда он спускается за камнем. Именно тогда герой осознаёт собственное положение. Он не выбирал наказание, но способен увидеть его без иллюзий. Его свобода не отменяет тяжести судьбы — она начинается с отказа считать себя обманутым.</p>
+
+          <figure>
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1400&q=80" alt="Суровые горные склоны и каменистая тропа" class="w-full object-cover" style="aspect-ratio: 16 / 9">
+            <figcaption>Не всякий путь ведёт к окончательному ответу. Иногда важнее то, как мы идём.</figcaption>
+          </figure>
+
+          <h2 id="everyday">Смысл в повседневности</h2>
+          <p>Это не означает, что нужно отказаться от планов, любви, работы или стремления что-то изменить. Напротив: если у нас нет гарантии, что мир подтвердит ценность каждого усилия, ценность действия не исчезает. Мы можем заботиться о другом человеке не потому, что это принесёт вечную награду, а потому, что забота важна сейчас.</p>
+
+          <p>Можно читать книгу, слушать музыку, учиться видеть город заново, поддерживать друга, создавать что-то несовершенное. Такие вещи не обязаны складываться в универсальную формулу. Их значение не становится меньше оттого, что оно человеческое, временное и не подтверждено извне.</p>
+
+          <h2 id="honesty">Мужество не знать</h2>
+          <p>Возможно, зрелость начинается не с обнаружения единственного правильного ответа, а со способности жить без него. Не всякая неопределённость должна быть немедленно устранена. Иногда честнее признать: мы не знаем, почему произошло то или иное событие, и не можем обещать себе, что всё непременно сложится к лучшему.</p>
+
+          <p>При этом отказ от окончательных объяснений не равен равнодушию. Мы по-прежнему выбираем, что считать важным, кому помогать, какие слова произносить и какие поступки совершать. Мир может молчать, но это не лишает нас возможности отвечать ему своими действиями.</p>
+
+          <p>Искать смысл, вероятно, стоит не ради момента, когда все вопросы исчезнут. Скорее, сам поиск помогает внимательнее проживать то, что уже есть. Мы продолжаем идти не потому, что получили гарантию, а потому, что жизнь — единственное место, где наши вопросы, решения и привязанности вообще могут состояться.</p>
+        </div>
+
+<!--        <div class="mt-10 border-y border-line py-5">-->
+<!--          <div class="flex flex-wrap items-center justify-between gap-4">-->
+<!--            <div>-->
+<!--              <p class="text-[10px] font-bold uppercase tracking-[.15em] text-graphite">Теги</p>-->
+<!--              <div class="mt-2 flex flex-wrap gap-2">-->
+<!--                <a href="#related" class="focus-ring border border-line px-3 py-1.5 text-xs transition hover:border-terracotta hover:text-terracotta">Альбер Камю</a>-->
+<!--                <a href="#related" class="focus-ring border border-line px-3 py-1.5 text-xs transition hover:border-terracotta hover:text-terracotta">Экзистенциализм</a>-->
+<!--                <a href="#related" class="focus-ring border border-line px-3 py-1.5 text-xs transition hover:border-terracotta hover:text-terracotta">Смысл жизни</a>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <button id="share-bottom" type="button" class="focus-ring inline-flex items-center gap-2 text-sm font-semibold text-terracotta hover:text-ink">-->
+<!--              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4"/></svg>-->
+<!--              Поделиться статьёй-->
+<!--            </button>-->
+<!--          </div>-->
+<!--          <p id="share-message" class="mt-3 hidden text-sm text-graphite" aria-live="polite"></p>-->
+<!--        </div>-->
+
+<!--        <section class="mt-8 flex gap-4 bg-linen p-5 sm:gap-5 sm:p-7" aria-label="Об авторе">-->
+<!--          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=180&q=80" alt="" class="h-16 w-16 shrink-0 rounded-full object-cover sm:h-20 sm:w-20">-->
+<!--          <div>-->
+<!--            <p class="text-[10px] font-bold uppercase tracking-[.15em] text-terracotta">Об авторе</p>-->
+<!--            <h2 class="mt-1 font-display text-xl font-semibold">Алексей Миронов</h2>-->
+<!--            <p class="mt-2 text-sm leading-relaxed text-graphite">Пишет о философии, литературе и повседневной культуре. Ищет идеи, которые помогают внимательнее смотреть на привычные вещи.</p>-->
+<!--          </div>-->
+<!--        </section>-->
+      </div>
+
+<!--      <aside class="space-y-8 lg:sticky lg:top-8 lg:self-start">-->
+<!--        <div class="border-t-2 border-ink pt-4">-->
+<!--          <p class="text-[10px] font-bold uppercase tracking-[.15em] text-terracotta">Содержание</p>-->
+<!--          <nav class="mt-4 space-y-3 text-sm" aria-label="Содержание статьи">-->
+<!--            <a class="focus-ring block text-graphite transition hover:text-terracotta" href="#silence">Молчание мира</a>-->
+<!--            <a class="focus-ring block text-graphite transition hover:text-terracotta" href="#sisyphus">Сизиф и свобода</a>-->
+<!--            <a class="focus-ring block text-graphite transition hover:text-terracotta" href="#everyday">Смысл в повседневности</a>-->
+<!--            <a class="focus-ring block text-graphite transition hover:text-terracotta" href="#honesty">Мужество не знать</a>-->
+<!--          </nav>-->
+<!--        </div>-->
+<!--        <div class="bg-linen p-5">-->
+<!--          <p class="text-[10px] font-bold uppercase tracking-[.15em] text-terracotta">Мысль на полях</p>-->
+<!--          <p class="mt-3 font-reading text-xl leading-snug">«Свобода — это не готовый ответ, а пространство для собственного выбора».</p>-->
+<!--          <p class="mt-3 text-xs text-graphite">Редакционная заметка</p>-->
+<!--        </div>-->
+<!--        <div id="article-categories" class="border-t border-line pt-4">-->
+<!--          <p class="text-[10px] font-bold uppercase tracking-[.15em] text-graphite">В этой рубрике</p>-->
+<!--          <a href="#related" class="mt-3 flex items-center justify-between gap-3 text-sm hover:text-terracotta"><span>Философия</span><span aria-hidden="true">↗</span></a>-->
+<!--          <a href="#related" class="mt-3 flex items-center justify-between gap-3 text-sm hover:text-terracotta"><span>Книги и идеи</span><span aria-hidden="true">↗</span></a>-->
+<!--        </div>-->
+<!--      </aside>-->
+    </div>
+  </article>
+
+<!--  <section id="related" class="mx-auto mt-20 max-w-6xl border-t border-ink pt-5 sm:mt-28" aria-labelledby="related-title">-->
+<!--    <div class="flex items-baseline justify-between gap-4">-->
+<!--      <h2 id="related-title" class="font-display text-3xl font-semibold tracking-[-.04em] sm:text-4xl">Продолжить чтение</h2>-->
+<!--      <a href="index.html" class="focus-ring text-sm font-semibold text-terracotta hover:text-ink">Все статьи ↗</a>-->
+<!--    </div>-->
+<!--    <div class="mt-7 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">-->
+<!--      <article class="group min-w-0">-->
+<!--        <a href="#" class="focus-ring block overflow-hidden bg-linen">-->
+<!--          <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=900&q=80" alt="Открытая книга на столе" class="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-[1.03]">-->
+<!--        </a>-->
+<!--        <p class="mt-4 text-[10px] font-bold uppercase tracking-[.15em] text-terracotta">Литература</p>-->
+<!--        <h3 class="mt-2 font-display text-2xl font-semibold leading-tight tracking-[-.035em]"><a href="#" class="focus-ring transition hover:text-terracotta">Зачем мы перечитываем любимые книги</a></h3>-->
+<!--        <p class="mt-2 text-sm leading-relaxed text-graphite">Иногда меняется не текст, а человек, который к нему возвращается.</p>-->
+<!--      </article>-->
+<!--      <article class="group min-w-0">-->
+<!--        <a href="#" class="focus-ring block overflow-hidden bg-linen">-->
+<!--          <img src="https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=900&q=80" alt="Абстрактная живопись в художественной галерее" class="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-[1.03]">-->
+<!--        </a>-->
+<!--        <p class="mt-4 text-[10px] font-bold uppercase tracking-[.15em] text-terracotta">Искусство</p>-->
+<!--        <h3 class="mt-2 font-display text-2xl font-semibold leading-tight tracking-[-.035em]"><a href="#" class="focus-ring transition hover:text-terracotta">Как смотреть на искусство без страха ошибиться</a></h3>-->
+<!--        <p class="mt-2 text-sm leading-relaxed text-graphite">Первое впечатление тоже может быть способом понимания.</p>-->
+<!--      </article>-->
+<!--      <article class="group min-w-0">-->
+<!--        <a href="#" class="focus-ring block overflow-hidden bg-linen">-->
+<!--          <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=80" alt="Кинозал с экраном" class="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-[1.03]">-->
+<!--        </a>-->
+<!--        <p class="mt-4 text-[10px] font-bold uppercase tracking-[.15em] text-terracotta">Кино</p>-->
+<!--        <h3 class="mt-2 font-display text-2xl font-semibold leading-tight tracking-[-.035em]"><a href="#" class="focus-ring transition hover:text-terracotta">Кадр, который говорит больше диалога</a></h3>-->
+<!--        <p class="mt-2 text-sm leading-relaxed text-graphite">Почему тишина в кино иногда становится главным событием.</p>-->
+<!--      </article>-->
+<!--    </div>-->
+<!--  </section>-->
+
+{% endblock %}
+
+{% block scripts %}
+<!--    <script>-->
+<!--        const progressBar = document.getElementById('reading-progress');-->
+<!--        function updateReadingProgress() {-->
+<!--          const scrollable = document.documentElement.scrollHeight - window.innerHeight;-->
+<!--          const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;-->
+<!--          progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;-->
+<!--        }-->
+<!--        window.addEventListener('scroll', updateReadingProgress, { passive: true });-->
+<!--        window.addEventListener('resize', updateReadingProgress);-->
+<!--        updateReadingProgress();-->
+<!--    </script>-->
+{% endblock %}

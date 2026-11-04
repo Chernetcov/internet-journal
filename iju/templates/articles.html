@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Статьи — {{ block.super }}{% endblock %}
+{% block description %}Статьи, эссе, рецензии и заметки о философии, литературе, искусстве и кино{% endblock %}
+
+{% block content %}
+    <section id="articles" class="mt-12 sm:mt-16" aria-labelledby="latest-title">
+      <div class="mb-5 flex items-end justify-between gap-4">
+        <div>
+          <p class="text-[10px] uppercase tracking-[.2em] text-terracotta">Из редакции</p>
+          <h2 id="latest-title" class="mt-1 font-display text-3xl sm:text-4xl">Свежие публикации</h2>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-x-5 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+        {% for article in articles %}
+          {% include "article_card.html" with article=article %}
+        {% endfor %}
+      </div>
+    </section>
+
+
+
+{% endblock %}

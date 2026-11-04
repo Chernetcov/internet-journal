@@ -1,0 +1,250 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <!-- Hero feature -->
+<!--    <section aria-labelledby="hero-title" class="grid gap-5 lg:grid-cols-12 lg:gap-6">-->
+<!--      <article class="group relative isolate min-h-[430px] overflow-hidden bg-ink sm:min-h-[470px] lg:col-span-8 lg:min-h-[500px]">-->
+<!--        <img-->
+<!--          src="https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=1800&q=85"-->
+<!--          alt="Посетитель рассматривает картину в художественном музее"-->
+<!--          class="absolute inset-0 -z-20 h-full w-full object-cover object-center"-->
+<!--          fetchpriority="high"-->
+<!--          onerror="this.style.display='none'"-->
+<!--        >-->
+<!--        <div class="absolute inset-0 -z-10 hero-overlay"></div>-->
+<!--        <div class="flex min-h-[430px] max-w-3xl flex-col items-start justify-end p-6 text-white sm:min-h-[470px] sm:p-9 lg:min-h-[500px] lg:p-11">-->
+<!--          <span class="mb-5 inline-flex border border-white/40 px-3 py-1 text-[10px] uppercase tracking-[.2em] text-white/90">Материал недели · Искусство</span>-->
+<!--          <h1 id="hero-title" class="max-w-2xl font-display text-4xl leading-[1.04] tracking-[-.035em] sm:text-5xl lg:text-6xl">-->
+<!--            Почему мы всё ещё смотрим на старые картины-->
+<!--          </h1>-->
+<!--          <p class="mt-5 max-w-lg font-reading text-lg leading-relaxed text-white/85 sm:text-xl">-->
+<!--            Что делает искусство прошлого актуальным в эпоху цифровых образов.-->
+<!--          </p>-->
+<!--          <div class="mt-7 flex w-full flex-wrap items-center justify-between gap-4">-->
+<!--            <a href="#featured" class="focus-ring inline-flex items-center gap-3 border border-white/70 px-4 py-3 text-sm transition hover:bg-white hover:text-ink">-->
+<!--              Читать статью <span aria-hidden="true">→</span>-->
+<!--            </a>-->
+<!--            <div class="flex items-center gap-2 text-xs tracking-widest text-white/80" aria-label="Слайд 1 из 4">-->
+<!--              <span class="h-1 w-8 bg-white"></span><span class="h-1 w-5 bg-white/45"></span><span class="h-1 w-5 bg-white/45"></span><span class="h-1 w-5 bg-white/45"></span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </article>-->
+
+<!--      <aside id="popular" class="flex flex-col border-t border-line pt-4 lg:col-span-4 lg:border-t-0 lg:pt-0" aria-labelledby="popular-title">-->
+<!--        <div class="border-l-2 border-terracotta bg-linen/60 px-5 py-5 sm:px-6">-->
+<!--          <span class="font-display text-4xl leading-none text-terracotta" aria-hidden="true">“</span>-->
+<!--          <blockquote class="mt-1 font-display text-2xl italic leading-snug sm:text-[1.7rem]">-->
+<!--            Искусство не воспроизводит видимое, а делает видимым невидимое.-->
+<!--          </blockquote>-->
+<!--          <p class="mt-4 text-[10px] uppercase tracking-[.2em] text-graphite">Приписывается Паулю Клее</p>-->
+<!--        </div>-->
+
+<!--        <div class="mt-6 flex items-end justify-between border-b border-line pb-3">-->
+<!--          <h2 id="popular-title" class="font-display text-3xl tracking-tight">Популярное</h2>-->
+<!--          <a href="#latest" class="focus-ring text-xs text-graphite hover:text-terracotta">Все статьи →</a>-->
+<!--        </div>-->
+
+<!--        <div class="divide-y divide-line">-->
+<!--          <article class="grid grid-cols-[104px_1fr] gap-4 py-4 sm:grid-cols-[120px_1fr]">-->
+<!--            <a href="#latest" class="image-zoom focus-ring block overflow-hidden bg-linen">-->
+<!--              <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=480&q=80" alt="Кинопроектор в тёмном зале" class="aspect-[4/3] h-full w-full object-cover" loading="lazy">-->
+<!--            </a>-->
+<!--            <div>-->
+<!--              <p class="mb-1 text-[10px] uppercase tracking-[.16em] text-terracotta">Кино · 12 мин</p>-->
+<!--              <h3 class="font-display text-lg leading-snug"><a class="focus-ring hover:text-terracotta" href="#latest">10 фильмов, которые меняют взгляд на человека</a></h3>-->
+<!--            </div>-->
+<!--          </article>-->
+<!--          <article class="grid grid-cols-[104px_1fr] gap-4 py-4 sm:grid-cols-[120px_1fr]">-->
+<!--            <a href="#latest" class="image-zoom focus-ring block overflow-hidden bg-linen">-->
+<!--              <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=480&q=80" alt="Старинные книги на полке" class="aspect-[4/3] h-full w-full object-cover" loading="lazy">-->
+<!--            </a>-->
+<!--            <div>-->
+<!--              <p class="mb-1 text-[10px] uppercase tracking-[.16em] text-terracotta">Литература · 7 мин</p>-->
+<!--              <h3 class="font-display text-lg leading-snug"><a class="focus-ring hover:text-terracotta" href="#latest">Почему мы возвращаемся к классике</a></h3>-->
+<!--            </div>-->
+<!--          </article>-->
+<!--          <article class="grid grid-cols-[104px_1fr] gap-4 py-4 sm:grid-cols-[120px_1fr]">-->
+<!--            <a href="#latest" class="image-zoom focus-ring block overflow-hidden bg-linen">-->
+<!--              <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=480&q=80" alt="Картина в художественной галерее" class="aspect-[4/3] h-full w-full object-cover" loading="lazy">-->
+<!--            </a>-->
+<!--            <div>-->
+<!--              <p class="mb-1 text-[10px] uppercase tracking-[.16em] text-terracotta">Искусство · 10 мин</p>-->
+<!--              <h3 class="font-display text-lg leading-snug"><a class="focus-ring hover:text-terracotta" href="#latest">Что такое красота: от Платона до наших дней</a></h3>-->
+<!--            </div>-->
+<!--          </article>-->
+<!--        </div>-->
+<!--      </aside>-->
+<!--    </section>-->
+
+    <!-- Categories -->
+    <section id="categories" class="mt-12 border-t border-line pt-7 sm:mt-16" aria-labelledby="categories-title">
+      <div class="mb-5 flex items-end justify-between gap-4">
+        <div>
+          <p class="text-[10px] uppercase tracking-[.2em] text-terracotta">Исследуйте журнал</p>
+          <h2 id="categories-title" class="mt-1 font-display text-3xl sm:text-4xl">Рубрики</h2>
+        </div>
+        <p class="hidden max-w-sm text-sm leading-relaxed text-graphite md:block">Четыре взгляда на человека, культуру и время.</p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+        <a href="#latest" class="group focus-ring overflow-hidden border border-line bg-white/40 transition hover:-translate-y-1 hover:shadow-subtle">
+          <div class="image-zoom overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=720&q=80" alt="Скульптура в музейном пространстве" class="aspect-[4/3] w-full object-cover" loading="lazy">
+          </div>
+          <div class="border-b-4 border-editorialBlue p-3 sm:p-4">
+            <h3 class="font-display text-xl sm:text-2xl">Философия</h3>
+            <p class="mt-2 text-xs leading-relaxed text-graphite sm:text-sm">Человек, общество и смыслы</p>
+            <span class="mt-3 inline-block text-sm text-editorialBlue" aria-hidden="true">Изучить →</span>
+          </div>
+        </a>
+        <a href="#latest" class="group focus-ring overflow-hidden border border-line bg-white/40 transition hover:-translate-y-1 hover:shadow-subtle">
+          <div class="image-zoom overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=720&q=80" alt="Открытые книги" class="aspect-[4/3] w-full object-cover" loading="lazy">
+          </div>
+          <div class="border-b-4 border-terracotta p-3 sm:p-4">
+            <h3 class="font-display text-xl sm:text-2xl">Литература</h3>
+            <p class="mt-2 text-xs leading-relaxed text-graphite sm:text-sm">Книги, авторы и судьбы</p>
+            <span class="mt-3 inline-block text-sm text-terracotta" aria-hidden="true">Изучить →</span>
+          </div>
+        </a>
+        <a href="#latest" class="group focus-ring overflow-hidden border border-line bg-white/40 transition hover:-translate-y-1 hover:shadow-subtle">
+          <div class="image-zoom overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=720&q=80" alt="Живопись в галерее" class="aspect-[4/3] w-full object-cover" loading="lazy">
+          </div>
+          <div class="border-b-4 border-[#3D7779] p-3 sm:p-4">
+            <h3 class="font-display text-xl sm:text-2xl">Искусство</h3>
+            <p class="mt-2 text-xs leading-relaxed text-graphite sm:text-sm">Живопись, архитектура, культура</p>
+            <span class="mt-3 inline-block text-sm text-[#3D7779]" aria-hidden="true">Изучить →</span>
+          </div>
+        </a>
+        <a href="#latest" class="group focus-ring overflow-hidden border border-line bg-white/40 transition hover:-translate-y-1 hover:shadow-subtle">
+          <div class="image-zoom overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=720&q=80" alt="Кинопроектор и плёнка" class="aspect-[4/3] w-full object-cover" loading="lazy">
+          </div>
+          <div class="border-b-4 border-[#B47A2C] p-3 sm:p-4">
+            <h3 class="font-display text-xl sm:text-2xl">Кино</h3>
+            <p class="mt-2 text-xs leading-relaxed text-graphite sm:text-sm">Фильмы, режиссёры, киноязык</p>
+            <span class="mt-3 inline-block text-sm text-[#B47A2C]" aria-hidden="true">Изучить →</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Featured editorial grid -->
+<!--    <section id="featured" class="mt-12 border-t border-line pt-7 sm:mt-16" aria-labelledby="featured-title">-->
+<!--      <div class="mb-5 flex items-end justify-between gap-4">-->
+<!--        <h2 id="featured-title" class="font-display text-3xl sm:text-4xl">Главное</h2>-->
+<!--        <a href="#latest" class="focus-ring shrink-0 text-sm text-graphite hover:text-terracotta">Все материалы <span aria-hidden="true">→</span></a>-->
+<!--      </div>-->
+
+<!--      <div class="grid gap-6 lg:grid-cols-12">-->
+<!--        <article class="lg:col-span-7">-->
+<!--          <a href="#latest" class="image-zoom focus-ring block overflow-hidden bg-linen">-->
+<!--            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=85" alt="Горные вершины в облаках" class="aspect-[16/9] w-full object-cover" loading="lazy">-->
+<!--          </a>-->
+<!--          <p class="mb-2 mt-4 text-[10px] uppercase tracking-[.18em] text-terracotta">Философия · Эссе</p>-->
+<!--          <h3 class="max-w-2xl font-display text-2xl leading-tight sm:text-3xl"><a class="focus-ring hover:text-terracotta" href="#latest">В чём смысл жизни? Новый взгляд на старый вопрос</a></h3>-->
+<!--          <p class="mt-3 max-w-2xl font-reading text-base leading-relaxed text-graphite">Почему философия не даёт готовых ответов, но помогает внимательнее смотреть на мир.</p>-->
+<!--          <p class="mt-3 text-xs text-graphite">12 октября 2026 <span class="mx-2">·</span> 8 минут чтения</p>-->
+<!--        </article>-->
+
+<!--        <div class="divide-y divide-line lg:col-span-5">-->
+<!--          <article class="grid grid-cols-[112px_1fr] gap-4 py-4 first:pt-0 sm:grid-cols-[150px_1fr]">-->
+<!--            <a href="#latest" class="image-zoom focus-ring block overflow-hidden bg-linen">-->
+<!--              <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=80" alt="Кинематографическая техника" class="aspect-[4/3] h-full w-full object-cover" loading="lazy">-->
+<!--            </a>-->
+<!--            <div>-->
+<!--              <p class="mb-1 text-[10px] uppercase tracking-[.15em] text-terracotta">Кино</p>-->
+<!--              <h3 class="font-display text-lg leading-snug sm:text-xl"><a class="focus-ring hover:text-terracotta" href="#latest">Тарковский и время: кино как форма молитвы</a></h3>-->
+<!--              <p class="mt-2 text-xs text-graphite">10 октября 2026 <span class="mx-1">·</span> 6 мин</p>-->
+<!--            </div>-->
+<!--          </article>-->
+<!--          <article class="grid grid-cols-[112px_1fr] gap-4 py-4 sm:grid-cols-[150px_1fr]">-->
+<!--            <a href="#latest" class="image-zoom focus-ring block overflow-hidden bg-linen">-->
+<!--              <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=600&q=80" alt="Книги в библиотеке" class="aspect-[4/3] h-full w-full object-cover" loading="lazy">-->
+<!--            </a>-->
+<!--            <div>-->
+<!--              <p class="mb-1 text-[10px] uppercase tracking-[.15em] text-terracotta">Литература</p>-->
+<!--              <h3 class="font-display text-lg leading-snug sm:text-xl"><a class="focus-ring hover:text-terracotta" href="#latest">Почему мы читаем Достоевского сегодня</a></h3>-->
+<!--              <p class="mt-2 text-xs text-graphite">8 октября 2026 <span class="mx-1">·</span> 7 мин</p>-->
+<!--            </div>-->
+<!--          </article>-->
+<!--          <article class="grid grid-cols-[112px_1fr] gap-4 py-4 sm:grid-cols-[150px_1fr]">-->
+<!--            <a href="#latest" class="image-zoom focus-ring block overflow-hidden bg-linen">-->
+<!--              <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?auto=format&fit=crop&w=600&q=80" alt="Яркая абстрактная живопись" class="aspect-[4/3] h-full w-full object-cover" loading="lazy">-->
+<!--            </a>-->
+<!--            <div>-->
+<!--              <p class="mb-1 text-[10px] uppercase tracking-[.15em] text-terracotta">Искусство</p>-->
+<!--              <h3 class="font-display text-lg leading-snug sm:text-xl"><a class="focus-ring hover:text-terracotta" href="#latest">Цвет как язык: от Моне до современных художников</a></h3>-->
+<!--              <p class="mt-2 text-xs text-graphite">5 октября 2026 <span class="mx-1">·</span> 6 мин</p>-->
+<!--            </div>-->
+<!--          </article>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
+
+    <!-- Latest articles -->
+    <section id="latest" class="mt-12 border-t border-line pt-7 sm:mt-16" aria-labelledby="latest-title">
+      <div class="mb-5 flex items-end justify-between gap-4">
+        <div>
+          <p class="text-[10px] uppercase tracking-[.2em] text-terracotta">Из редакции</p>
+          <h2 id="latest-title" class="mt-1 font-display text-3xl sm:text-4xl">Свежие публикации</h2>
+        </div>
+        <a href="#categories" class="focus-ring shrink-0 text-sm text-graphite hover:text-terracotta">Все статьи →</a>
+      </div>
+
+      <div class="grid grid-cols-1 gap-x-5 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+        <article>
+          <a href="#newsletter" class="image-zoom focus-ring block overflow-hidden bg-linen">
+            <img src="https://images.unsplash.com/photo-1455390582262-044c695c972e?auto=format&fit=crop&w=720&q=80" alt="Читательница с книгой у окна" class="aspect-[3/2] w-full object-cover" loading="lazy">
+          </a>
+          <p class="mb-2 mt-3 text-[10px] uppercase tracking-[.15em] text-terracotta">Литература</p>
+          <h3 class="font-display text-xl leading-snug"><a class="focus-ring hover:text-terracotta" href="#newsletter">Топ-5 книг, которые меняют мышление</a></h3>
+          <p class="mt-3 text-xs text-graphite">11 октября 2026 <span class="mx-1">·</span> 5 мин</p>
+        </article>
+        <article>
+          <a href="#newsletter" class="image-zoom focus-ring block overflow-hidden bg-linen">
+            <img src="https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=720&q=80" alt="Посетитель рассматривает произведение искусства" class="aspect-[3/2] w-full object-cover" loading="lazy">
+          </a>
+          <p class="mb-2 mt-3 text-[10px] uppercase tracking-[.15em] text-terracotta">Искусство</p>
+          <h3 class="font-display text-xl leading-snug"><a class="focus-ring hover:text-terracotta" href="#newsletter">Современное искусство: как перестать бояться</a></h3>
+          <p class="mt-3 text-xs text-graphite">9 октября 2026 <span class="mx-1">·</span> 8 мин</p>
+        </article>
+        <article>
+          <a href="#newsletter" class="image-zoom focus-ring block overflow-hidden bg-linen">
+            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=720&q=80" alt="Старинный кинопроектор" class="aspect-[3/2] w-full object-cover" loading="lazy">
+          </a>
+          <p class="mb-2 mt-3 text-[10px] uppercase tracking-[.15em] text-terracotta">Кино</p>
+          <h3 class="font-display text-xl leading-snug"><a class="focus-ring hover:text-terracotta" href="#newsletter">Фильмы, которые стоит посмотреть осенью</a></h3>
+          <p class="mt-3 text-xs text-graphite">7 октября 2026 <span class="mx-1">·</span> 5 мин</p>
+        </article>
+        <article>
+          <a href="#newsletter" class="image-zoom focus-ring block overflow-hidden bg-linen">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=720&q=80" alt="Горный пейзаж в мягком свете" class="aspect-[3/2] w-full object-cover" loading="lazy">
+          </a>
+          <p class="mb-2 mt-3 text-[10px] uppercase tracking-[.15em] text-terracotta">Философия</p>
+          <h3 class="font-display text-xl leading-snug"><a class="focus-ring hover:text-terracotta" href="#newsletter">Стоицизм в повседневной жизни</a></h3>
+          <p class="mt-3 text-xs text-graphite">3 октября 2026 <span class="mx-1">·</span> 7 мин</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+<!--    <section id="newsletter" class="mt-12 grid gap-6 bg-ink px-5 py-7 text-white sm:mt-16 sm:px-8 sm:py-9 lg:grid-cols-12 lg:items-center lg:gap-10" aria-labelledby="newsletter-title">-->
+<!--      <div class="lg:col-span-5">-->
+<!--        <p class="text-[10px] uppercase tracking-[.2em] text-[#D6B99E]">Письма о культуре</p>-->
+<!--        <h2 id="newsletter-title" class="mt-2 font-display text-3xl leading-tight sm:text-4xl">Идеи, к которым хочется возвращаться</h2>-->
+<!--        <p class="mt-3 max-w-lg font-reading leading-relaxed text-white/70">Новые статьи, редакционные подборки и культурные открытия — без лишнего шума.</p>-->
+<!--      </div>-->
+<!--      <form id="newsletter-form" class="lg:col-span-7" novalidate>-->
+<!--        <label for="email" class="mb-2 block text-sm text-white/80">Ваш e-mail</label>-->
+<!--        <div class="flex flex-col gap-3 sm:flex-row">-->
+<!--          <input id="email" name="email" type="email" autocomplete="email" required placeholder="name@example.com" class="focus-ring min-w-0 flex-1 border border-white/25 bg-white/10 px-4 py-3 text-white placeholder:text-white/45">-->
+<!--          <button type="submit" class="focus-ring bg-paper px-6 py-3 text-sm font-medium text-ink transition hover:bg-linen">Подписаться <span aria-hidden="true">→</span></button>-->
+<!--        </div>-->
+<!--        <p id="newsletter-message" class="mt-3 text-sm text-white/70" aria-live="polite">Нажимая «Подписаться», вы соглашаетесь получать письма журнала. Подключите форму к своему сервису рассылок перед запуском.</p>-->
+<!--      </form>-->
+<!--    </section>-->
+{% endblock %}
