@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}{{article.title}} — {{ block.super }}{% endblock %}
+{% load dates %}
 {% block description %}{{article.description}}{% endblock %}
 
 {% block content %}
@@ -32,7 +33,7 @@
 <!--          <span class="text-left"><span class="block font-semibold text-ink">Алексей Миронов</span><span>Автор журнала</span></span>-->
 <!--        </div>-->
 <!--        <span class="hidden h-1 w-1 rounded-full bg-line sm:block" aria-hidden="true"></span>-->
-        <time datetime="{{ article.publicated | date:'Y-m-d'}}">{{ article.publicated | date:'d F Y'}}</time>
+        <time datetime="{{ article.publicated | date:'Y-m-d'}}">{{ article.publicated | rus_date }}</time>
         <span class="hidden h-1 w-1 rounded-full bg-line sm:block" aria-hidden="true"></span>
         <span>{{article.time_to_read}} минут чтения</span>
       </div>
