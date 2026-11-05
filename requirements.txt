@@ -8,8 +8,13 @@ django-click==2.5.0
 django-environ==0.14.0
 django-tailwind-cli==4.8.1
 idna==3.20
+iniconfig==2.3.1
+packaging==26.3
 pillow==13.0.0
+pluggy==1.7.0
 psycopg==3.3.6
+Pygments==2.21.0
+pytest==9.2.0
 requests==2.34.2
 semver==3.1.0
 sqlparse==0.6.0
