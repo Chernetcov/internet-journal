@@ -1,0 +1,16 @@
+asgiref==3.12.1
+certifi==2026.10.23
+charset-normalizer==3.5.2
+click==8.5.0
+Django==6.1.2
+django-ckeditor-5==0.2.20
+django-click==2.5.0
+django-environ==0.14.0
+django-tailwind-cli==4.8.1
+idna==3.20
+pillow==13.0.0
+psycopg==3.3.6
+requests==2.34.2
+semver==3.1.0
+sqlparse==0.6.0
+urllib3==2.8.0
