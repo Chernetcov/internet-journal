@@ -63,4 +63,9 @@ internet-journal
 > python manage.py migrate
 
 Команда для запуска локального сервера:
-> python manage.py tailwind runserver     
+> python manage.py tailwind runserver
+
+## 6. Тестирование
+
+Тесты надо писать только если в промпте прямо указано "напиши тест"
+Тесты надо запускать только если в промпте прямо указано "запусти тест"
