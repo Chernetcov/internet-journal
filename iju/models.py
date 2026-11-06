@@ -4,7 +4,7 @@ import uuid
 from django.db import models
 from django_ckeditor_5.fields import CKEditor5Field
 
-from iju.utils.image import MAX_HEIGHT, resize_image_to_max_height
+from iju.utils.image import MAX_HEIGHT, resize_image_to_max_height, generate_image_store_renditions
 from iju.validators.image_upload_validator import validate_image
 
 
@@ -37,6 +37,10 @@ class ImageStore(models.Model):
     )
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        generate_image_store_renditions(self)
 
     class Meta:
         verbose_name = "Изображение"
