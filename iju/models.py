@@ -17,7 +17,9 @@ class ImageStore(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
     image = models.ImageField(
         upload_to=settings.IMAGE_STORE_UPLOAD_TO,
-        help_text="Оригинал изображения (сохраняется в исходном формате, max 10 MB, 4000px).",
+        help_text=f"Оригинал изображения (сохраняется в исходном формате, max "
+                  f"{settings.IMAGE_STORE_ORIGIN_MAX_SIZE / 1024 /1024} MB, "
+                  f"{settings.IMAGE_STORE_ORIGIN_MAX_HEIGHT}px).",
         validators=[validate_image],
     )
     caption = models.TextField(
@@ -80,7 +82,7 @@ def delete_image_store_files(sender, instance, **kwargs):
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='category_images/')
+    image = models.ForeignKey(ImageStore, on_delete=models.SET_NULL, null=True)
     description = models.TextField()
     slug = models.SlugField(unique=True)
 
@@ -90,11 +92,7 @@ class Article(models.Model):
     title = models.CharField(max_length=128)
     description = models.TextField()
     content = CKEditor5Field(config_name="article",)
-    image = models.ImageField(
-        upload_to='article_images/',
-        blank=True,
-        null=True,
-    )
+    image = models.ForeignKey(ImageStore, on_delete=models.SET_NULL, null=True)
     publish = models.BooleanField()
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now_add=True)

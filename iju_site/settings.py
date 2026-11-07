@@ -153,14 +153,10 @@ IMAGE_STORE_UPLOAD_TO = "images/"
 #: Максимальный размер загружаемого файла (байты) -- 10 MB
 IMAGE_STORE_ORIGIN_MAX_SIZE = 10485760
 
-#: Максимальное измерение (ширина или высота) оригинала (пиксели).
-#: Картинки больше этого размера уменьшаются при загрузке.
-IMAGE_STORE_ORIGIN_MAX_DIMENSION = 4000
-
 #: Максимальные размеры оригинала ПОСЛЕ сжатия (пиксели).
 #: По умолчанию равны IMAGE_STORE_ORIGIN_MAX_DIMENSION.
-IMAGE_STORE_ORIGIN_MAX_WIDTH = 4000
-IMAGE_STORE_ORIGIN_MAX_HEIGHT = 4000
+IMAGE_STORE_ORIGIN_MAX_WIDTH = 8000
+IMAGE_STORE_ORIGIN_MAX_HEIGHT = 8000
 
 #: Допустимые форматы загрузки (не чувствительно к регистру).
 IMAGE_STORE_SUPPORTED_FORMATS = ('JPEG', 'PNG', 'WEBP')
