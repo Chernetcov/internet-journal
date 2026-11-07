@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Страница не найдена — {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="w-full max-w-2xl mx-auto text-center">
+
+    <!-- Error code -->
+    <div class="mb-8">
+        <span class="font-sans text-sm font-medium tracking-[0.3em] uppercase text-ochre">
+            Ошибка 404
+        </span>
+    </div>
+
+    <!-- Heading -->
+    <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl leading-tight text-ink mb-8">
+        Кажется, эта страница
+        <span class="text-terracotta italic">потерялась</span>
+        между строк.
+    </h1>
+
+    <!-- Description -->
+    <p class="max-w-lg mx-auto font-serif text-lg sm:text-xl leading-relaxed text-graphite mb-10">
+        Возможно, ссылка устарела, адрес был указан неверно
+        или материал переехал. Но это не повод прекращать
+        поиски интересного.
+    </p>
+
+    <!-- Home button -->
+    <a
+        href="{% url 'home' %}"
+        class="inline-flex items-center justify-center gap-3
+               px-7 py-3.5
+               bg-ink text-paper
+               font-sans text-sm font-medium
+               hover:bg-terracotta
+               transition-colors duration-200
+               focus-visible:outline-2 focus-visible:outline-offset-4
+               focus-visible:outline-ochre"
+    >
+        Вернуться на главную
+
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            class="w-4 h-4"
+            aria-hidden="true"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4.75 12h14.5m-6-6 6 6-6 6"
+            />
+        </svg>
+    </a>
+
+    <!-- Secondary link -->
+    <div class="mt-8">
+        <a
+            href="{% url 'article_list' %}"
+            class="font-sans text-sm text-terracotta
+                   underline underline-offset-4
+                   decoration-1 decoration-terracotta/40
+                   hover:decoration-terracotta
+                   transition-colors"
+        >
+            Или продолжить знакомство с журналом
+        </a>
+    </div>
+
+    <!-- Decorative element -->
+    <div class="mt-16 flex items-center justify-center gap-4">
+        <span class="block w-12 h-px bg-line"></span>
+        <span class="font-serif text-sm italic text-graphite">
+            Культурный код
+        </span>
+        <span class="block w-12 h-px bg-line"></span>
+    </div>
+
+</div>
+{% endblock %}
