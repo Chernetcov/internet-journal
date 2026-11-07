@@ -89,46 +89,50 @@
       </div>
 
       <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-        <a href="#latest" class="group focus-ring overflow-hidden border border-line bg-white/40 transition hover:-translate-y-1 hover:shadow-subtle">
-          <div class="image-zoom overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=720&q=80" alt="Скульптура в музейном пространстве" class="aspect-[4/3] w-full object-cover" loading="lazy">
-          </div>
-          <div class="border-b-4 border-editorialBlue p-3 sm:p-4">
-            <h3 class="font-display text-xl sm:text-2xl">Философия</h3>
-            <p class="mt-2 text-xs leading-relaxed text-graphite sm:text-sm">Человек, общество и смыслы</p>
-            <span class="mt-3 inline-block text-sm text-editorialBlue" aria-hidden="true">Изучить →</span>
-          </div>
-        </a>
-        <a href="#latest" class="group focus-ring overflow-hidden border border-line bg-white/40 transition hover:-translate-y-1 hover:shadow-subtle">
-          <div class="image-zoom overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=720&q=80" alt="Открытые книги" class="aspect-[4/3] w-full object-cover" loading="lazy">
-          </div>
-          <div class="border-b-4 border-terracotta p-3 sm:p-4">
-            <h3 class="font-display text-xl sm:text-2xl">Литература</h3>
-            <p class="mt-2 text-xs leading-relaxed text-graphite sm:text-sm">Книги, авторы и судьбы</p>
-            <span class="mt-3 inline-block text-sm text-terracotta" aria-hidden="true">Изучить →</span>
-          </div>
-        </a>
-        <a href="#latest" class="group focus-ring overflow-hidden border border-line bg-white/40 transition hover:-translate-y-1 hover:shadow-subtle">
-          <div class="image-zoom overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=720&q=80" alt="Живопись в галерее" class="aspect-[4/3] w-full object-cover" loading="lazy">
-          </div>
-          <div class="border-b-4 border-[#3D7779] p-3 sm:p-4">
-            <h3 class="font-display text-xl sm:text-2xl">Искусство</h3>
-            <p class="mt-2 text-xs leading-relaxed text-graphite sm:text-sm">Живопись, архитектура, культура</p>
-            <span class="mt-3 inline-block text-sm text-[#3D7779]" aria-hidden="true">Изучить →</span>
-          </div>
-        </a>
-        <a href="#latest" class="group focus-ring overflow-hidden border border-line bg-white/40 transition hover:-translate-y-1 hover:shadow-subtle">
-          <div class="image-zoom overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=720&q=80" alt="Кинопроектор и плёнка" class="aspect-[4/3] w-full object-cover" loading="lazy">
-          </div>
-          <div class="border-b-4 border-[#B47A2C] p-3 sm:p-4">
-            <h3 class="font-display text-xl sm:text-2xl">Кино</h3>
-            <p class="mt-2 text-xs leading-relaxed text-graphite sm:text-sm">Фильмы, режиссёры, киноязык</p>
-            <span class="mt-3 inline-block text-sm text-[#B47A2C]" aria-hidden="true">Изучить →</span>
-          </div>
-        </a>
+        {% for category in categories %}
+          {% include "category_card.html" with category=category %}
+        {% endfor %}
+
+<!--        <a href="#latest" class="group focus-ring overflow-hidden border border-line bg-white/40 transition hover:-translate-y-1 hover:shadow-subtle">-->
+<!--          <div class="image-zoom overflow-hidden">-->
+<!--            <img src="https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=720&q=80" alt="Скульптура в музейном пространстве" class="aspect-[4/3] w-full object-cover" loading="lazy">-->
+<!--          </div>-->
+<!--          <div class="border-b-4 border-editorialBlue p-3 sm:p-4">-->
+<!--            <h3 class="font-display text-xl sm:text-2xl">Философия</h3>-->
+<!--            <p class="mt-2 text-xs leading-relaxed text-graphite sm:text-sm">Человек, общество и смыслы</p>-->
+<!--            <span class="mt-3 inline-block text-sm text-editorialBlue" aria-hidden="true">Изучить →</span>-->
+<!--          </div>-->
+<!--        </a>-->
+<!--        <a href="#latest" class="group focus-ring overflow-hidden border border-line bg-white/40 transition hover:-translate-y-1 hover:shadow-subtle">-->
+<!--          <div class="image-zoom overflow-hidden">-->
+<!--            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=720&q=80" alt="Открытые книги" class="aspect-[4/3] w-full object-cover" loading="lazy">-->
+<!--          </div>-->
+<!--          <div class="border-b-4 border-terracotta p-3 sm:p-4">-->
+<!--            <h3 class="font-display text-xl sm:text-2xl">Литература</h3>-->
+<!--            <p class="mt-2 text-xs leading-relaxed text-graphite sm:text-sm">Книги, авторы и судьбы</p>-->
+<!--            <span class="mt-3 inline-block text-sm text-terracotta" aria-hidden="true">Изучить →</span>-->
+<!--          </div>-->
+<!--        </a>-->
+<!--        <a href="#latest" class="group focus-ring overflow-hidden border border-line bg-white/40 transition hover:-translate-y-1 hover:shadow-subtle">-->
+<!--          <div class="image-zoom overflow-hidden">-->
+<!--            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=720&q=80" alt="Живопись в галерее" class="aspect-[4/3] w-full object-cover" loading="lazy">-->
+<!--          </div>-->
+<!--          <div class="border-b-4 border-[#3D7779] p-3 sm:p-4">-->
+<!--            <h3 class="font-display text-xl sm:text-2xl">Искусство</h3>-->
+<!--            <p class="mt-2 text-xs leading-relaxed text-graphite sm:text-sm">Живопись, архитектура, культура</p>-->
+<!--            <span class="mt-3 inline-block text-sm text-[#3D7779]" aria-hidden="true">Изучить →</span>-->
+<!--          </div>-->
+<!--        </a>-->
+<!--        <a href="#latest" class="group focus-ring overflow-hidden border border-line bg-white/40 transition hover:-translate-y-1 hover:shadow-subtle">-->
+<!--          <div class="image-zoom overflow-hidden">-->
+<!--            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=720&q=80" alt="Кинопроектор и плёнка" class="aspect-[4/3] w-full object-cover" loading="lazy">-->
+<!--          </div>-->
+<!--          <div class="border-b-4 border-[#B47A2C] p-3 sm:p-4">-->
+<!--            <h3 class="font-display text-xl sm:text-2xl">Кино</h3>-->
+<!--            <p class="mt-2 text-xs leading-relaxed text-graphite sm:text-sm">Фильмы, режиссёры, киноязык</p>-->
+<!--            <span class="mt-3 inline-block text-sm text-[#B47A2C]" aria-hidden="true">Изучить →</span>-->
+<!--          </div>-->
+<!--        </a>-->
       </div>
     </section>
 

@@ -1,13 +1,16 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.template import loader
 from django.views import generic
 
-from iju.models import Article
+from iju.models import Article, Category
 
 
 def index(request):
-    template = loader.get_template("index.html")
-    return HttpResponse(template.render())
+    context = {
+        'categories': Category.objects.all()
+    }
+    return render(request, 'index.html', context)
 
 def category(request, category_id):
     return HttpResponse(f"Category page id: {category_id}")

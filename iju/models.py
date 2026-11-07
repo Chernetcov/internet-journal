@@ -44,6 +44,17 @@ class ImageStore(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def srcset(self):
+        """Строка для атрибута ``srcset``: URL превью с дескрипторами ширины."""
+        if not self.renditions:
+            return ""
+        storage = self.image.storage
+        items = []
+        for width, path in sorted(self.renditions.items(), key=lambda item: int(item[0])):
+            items.append(f"{storage.url(path)} {width}w")
+        return ", ".join(items)
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         # После переноса оригинала и генерации превью сохраняем новые пути,
