@@ -41,17 +41,29 @@
 
     <figure class="mx-auto mt-8 max-w-6xl sm:mt-12">
       <div class="overflow-hidden bg-linen">
+        {% if article.image %}
         <img
-          src="{{article.image.url}}"
-          alt="Горный пейзаж в мягком утреннем свете"
+          src="{{ article.image.image.url }}"
+          {% if article.image.srcset %}srcset="{{ article.image.srcset }}"
+          sizes="(min-width: 1280px) 1152px, 100vw"{% endif %}
+          alt="{{ article.image.caption }}"
           class="max-h-[680px] w-full object-cover"
           style="aspect-ratio: 16 / 8.2"
         >
+        {% endif %}
       </div>
+      {% if article.image %}
       <figcaption class="flex flex-wrap justify-between gap-2 px-1">
-        <span>Иногда смысл начинается с внимательного взгляда на мир.</span>
-        <span>Фото: Unsplash</span>
+        <span>{{ article.image.caption }}</span>
+        <span>
+          {% if article.image.source_url %}
+            <a class="focus-ring hover:text-terracotta" href="{{ article.image.source_url }}">{{ article.image.source_text }}</a>
+          {% else %}
+            {{ article.image.source_text }}
+          {% endif %}
+        </span>
       </figcaption>
+      {% endif %}
     </figure>
 
 <!--    <div class="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-16">-->
