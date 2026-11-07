@@ -17,9 +17,9 @@ _NO_ALPHA_FORMATS = {"JPEG", "BMP"}
 def generate_image_store_renditions(instance):
     """Генерирует уменьшенные WebP-копии изображения ImageStore.
 
-    Файл перемещается из ``image_store/<uuid>/<имя>`` в структуру
-    ``image_store/<год>/<месяц>/<день>/<uuid>/``. Для указанного в
-    ``settings.IMAGE_STORE_PREVIEWS`` набора ширинок создаются копии в
+    Файл перемещается из исходного места в структуру
+    ``settings.IMAGE_STORE_UPLOAD_TO/<год>/<месяц>/<день>/<uuid>/``.
+    Для указанного в ``settings.IMAGE_STORE_PREVIEWS`` набора ширинок создаются копии в
     формате ``settings.IMAGE_STORE_PREVIEWS_FORMAT`` (по умолчанию WebP)
     с качеством ``settings.IMAGE_STORE_PREVIEWS_QUALITY``. Пути к
     превью сохраняются в поле ``instance.renditions``.
@@ -38,11 +38,12 @@ def generate_image_store_renditions(instance):
     original_path = instance.image.name
     ext = os.path.splitext(original_path)[1].lstrip(".")
 
-    # Разбираем дату из пути загруженного оригинала (формат ``image_store/
-    # <uuid>/<имя>.<ext>``), для каталогов используем время сохранения записи.
+    # Каталог хранения берем из настроек (как и upload_to модели ImageStore),
+    # дату -- по времени сохранения записи.
     now = datetime.now()
+    base_path = settings.IMAGE_STORE_UPLOAD_TO.strip("/")
     media_path = f"{now:%Y}/{now:%m}/{now:%d}/{instance.uuid}/"
-    storage_path = f"image_store/{media_path}"
+    storage_path = f"{base_path}/{media_path}" if base_path else media_path
 
     try:
         with storage.open(original_path, "rb") as f:
@@ -83,11 +84,11 @@ def generate_image_store_renditions(instance):
                     resized.save(buffer, format=preview_format, **save_kwargs)
 
                     file_name = f"{physical_width}.{preview_format.lower()}"
-                    rendition_path = f"images/{media_path}{file_name}"
+                    rendition_path = f"{storage_path}{file_name}"
                     rendition_file = ContentFile(buffer.getvalue(), name=file_name)
-                    if storage.exists(f"image_store/{media_path}{file_name}"):
-                        storage.delete(f"image_store/{media_path}{file_name}")
-                    storage.save(f"image_store/{media_path}{file_name}", rendition_file)
+                    if storage.exists(rendition_path):
+                        storage.delete(rendition_path)
+                    storage.save(rendition_path, rendition_file)
                     renditions[str(physical_width)] = rendition_path
     except (UnidentifiedImageError, OSError):
         return
