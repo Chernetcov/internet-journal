@@ -1,6 +1,13 @@
 <article>
   <a href="{% url 'article' article.slug %}" class="image-zoom focus-ring block overflow-hidden bg-linen">
-    <img src="{{ article.image.url }}" alt="{{ article.title }}" class="aspect-[3/2] w-full object-cover" loading="lazy">
+    {% if article.image %}
+      <img src="{{ article.image.image.url }}"
+           {% if article.image.srcset %}srcset="{{ article.image.srcset }}"
+           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"{% endif %}
+           alt="{{ article.image.caption }}"
+           class="aspect-[3/2] w-full object-cover"
+           loading="lazy">
+    {% endif %}
   </a>
   <p class="mb-2 mt-3 text-[10px] uppercase tracking-[.15em] text-terracotta">{{ article.category.name }}</p>
   <h3 class="font-display text-xl leading-snug"><a class="focus-ring hover:text-terracotta" href="{% url 'article' article.slug %}">{{ article.title }}</a></h3>
