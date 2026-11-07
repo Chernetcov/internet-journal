@@ -35,3 +35,5 @@ media/
 # ОС
 .DS_Store
 Thumbs.db
+
+/assets/
