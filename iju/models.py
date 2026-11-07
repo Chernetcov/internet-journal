@@ -6,13 +6,14 @@ from django_ckeditor_5.fields import CKEditor5Field
 
 from iju.utils.image import MAX_HEIGHT, resize_image_to_max_height, generate_image_store_renditions
 from iju.validators.image_upload_validator import validate_image
+from iju_site import settings
 
 
 class ImageStore(models.Model):
 
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
     image = models.ImageField(
-        upload_to="image_store/",
+        upload_to=settings.IMAGE_STORE_UPLOAD_TO,
         help_text="Оригинал изображения (сохраняется в исходном формате, max 10 MB, 4000px).",
         validators=[validate_image],
     )

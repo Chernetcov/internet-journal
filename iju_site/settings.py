@@ -148,7 +148,7 @@ TAILWIND_CLI_SRC_CSS = 'styles/main.css'
 # ---------------------------------------------------------------------------
 
 #: Папка внутри MEDIA_ROOT для изображений ImageStore
-IMAGE_STORE_UPLOAD_TO = 'image_store/'
+IMAGE_STORE_UPLOAD_TO = "images/"
 
 #: Максимальный размер загружаемого файла (байты) -- 10 MB
 IMAGE_STORE_ORIGIN_MAX_SIZE = 10485760
