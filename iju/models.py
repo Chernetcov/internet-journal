@@ -1,7 +1,10 @@
 import os
+import shutil
 
 import uuid
 from django.db import models
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 from django_ckeditor_5.fields import CKEditor5Field
 
 from iju.utils.image import MAX_HEIGHT, generate_image_store_renditions
@@ -41,11 +44,38 @@ class ImageStore(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        generate_image_store_renditions(self)
+        # После переноса оригинала и генерации превью сохраняем новые пути,
+        # чтобы они были доступны при последующем удалении объекта.
+        if generate_image_store_renditions(self):
+            super().save(update_fields=["image", "renditions"])
 
     class Meta:
         verbose_name = "Изображение"
         verbose_name_plural = "Изображения"
+
+
+@receiver(post_delete, sender=ImageStore)
+def delete_image_store_files(sender, instance, **kwargs):
+    """Удаляет оригинал, превью и каталог с ними из хранилища.
+
+    Срабатывает при удалении как одиночного объекта, так и через
+    ``QuerySet.delete()`` (например, массовое удаление в админке).
+    """
+    if not instance.image:
+        return
+
+    storage = instance.image.storage
+
+    # Удаляем каталог, в котором лежали оригинал и превью
+    directory = os.path.dirname(instance.image.name)
+    if not directory:
+        return
+    try:
+        directory_path = storage.path(directory)
+    except (AttributeError, NotImplementedError):
+        # Хранилище не поддерживает работу с файловой системой
+        return
+    shutil.rmtree(directory_path, ignore_errors=True)
 
 
 class Category(models.Model):

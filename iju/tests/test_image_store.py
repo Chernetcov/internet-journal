@@ -79,3 +79,27 @@ class ImageStoreUploadTest(TestCase):
         self.assertEqual(
             instance.image.name, f"{expected_prefix}original.jpeg"
         )
+
+    def test_delete_image_removes_directory(self):
+        instance = ImageStore(caption="Изображение для удаления")
+        instance.image = self._make_jpeg()
+        instance.save()
+
+        now = datetime.now()
+        image_dir = (
+            Path(TEST_DIR)
+            / settings.IMAGE_STORE_UPLOAD_TO.strip("/")
+            / f"{now:%Y}"
+            / f"{now:%m}"
+            / f"{now:%d}"
+            / str(instance.uuid)
+        )
+
+        # После загрузки создана папка с именем, равным uuid объекта
+        self.assertTrue(image_dir.is_dir(), msg=f"Нет каталога {image_dir}")
+        self.assertEqual(image_dir.name, str(instance.uuid))
+
+        instance.delete()
+
+        # После удаления объекта папка с его uuid удалена
+        self.assertFalse(image_dir.exists(), msg=f"Каталог {image_dir} не удалён")

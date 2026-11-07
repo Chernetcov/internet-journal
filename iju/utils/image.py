@@ -26,12 +26,15 @@ def generate_image_store_renditions(instance):
 
     Работает один раз: если ``instance.renditions`` уже заполнено, выполнение
     пропускается (модель сохраняет ``renditions`` без изменений).
+
+    Возвращает ``True``, если файл был перемещён и превью сгенерированы
+    (модель должна сохранить обновлённые ``image`` и ``renditions``).
     """
     if not hasattr(instance, "image") or not instance.image:
-        return
+        return False
     # Если превью уже сгенерированы и сохранены в БД, повторная обработка не нужна
     if instance.renditions:
-        return
+        return False
 
     storage = getattr(instance, "_storage", default_storage)
     renditions = {}
@@ -53,7 +56,7 @@ def generate_image_store_renditions(instance):
                 storage.delete(original_dest)
             storage.save(original_dest, content)
     except (UnidentifiedImageError, OSError):
-        return
+        return False
     storage.delete(original_path)
     instance.image.storage = storage
     instance.image.name = f"{storage_path}original.{ext}"
@@ -91,7 +94,8 @@ def generate_image_store_renditions(instance):
                     storage.save(rendition_path, rendition_file)
                     renditions[str(physical_width)] = rendition_path
     except (UnidentifiedImageError, OSError):
-        return
+        return False
 
     instance.renditions = renditions
+    return True
 
