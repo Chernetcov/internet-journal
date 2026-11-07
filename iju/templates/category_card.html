@@ -12,9 +12,9 @@
             <div class="aspect-[4/3] w-full bg-line" aria-hidden="true"></div>
         {% endif %}
     </div>
-    <div class="border-b-4 border-editorialBlue p-3 sm:p-4">
+    <div class="border-b-4 p-3 sm:p-4 {% if color == 'blue' %}border-blue{% elif color == 'terracotta' %}border-terracotta{% elif color == 'petrol' %}border-petrol{% else %}border-ochre{% endif %}">
         <h3 class="font-display text-xl sm:text-2xl">{{ category.name }}</h3>
         <p class="mt-2 text-xs leading-relaxed text-graphite sm:text-sm">{{ category.description }}</p>
-        <span class="mt-3 inline-block text-sm text-editorialBlue" aria-hidden="true">Изучить →</span>
+        <span class="mt-3 inline-block text-sm {% if color == 'blue' %}text-blue{% elif color == 'terracotta' %}text-terracotta{% elif color == 'petrol' %}text-petrol{% else %}text-ochre{% endif %}" aria-hidden="true">Изучить →</span>
     </div>
 </a>
