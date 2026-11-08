@@ -14,11 +14,9 @@ from iju.models import ImageStore
 # Временный каталог для MEDIA_ROOT тестовой среды
 TEST_DIR = tempfile.mkdtemp(prefix="iju-test-media-")
 
-
 @override_settings(MEDIA_ROOT=TEST_DIR)
-class ImageStoreUploadTest(TestCase):
-    """Успешная загрузка изображения в ImageStore."""
-
+class ImageStoreTestBase(TestCase):
+    """Базовый класс для тестирования с использованием ImageStore"""
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -37,10 +35,15 @@ class ImageStoreUploadTest(TestCase):
         )
         return ContentFile(buffer.getvalue(), name="source.jpeg")
 
+
+class ImageStoreUploadTest(ImageStoreTestBase):
+    """Успешная загрузка изображения в ImageStore."""
+
     def test_upload_image_creates_original_and_renditions(self):
-        instance = ImageStore(caption="Тестовое изображение")
-        instance.image = self._make_jpeg()
-        instance.save()
+        instance = ImageStore.objects.create(
+            image = self._make_jpeg(),
+            caption="Тестовое изображение"
+        )
 
         now = datetime.now()
         media_dir = (
