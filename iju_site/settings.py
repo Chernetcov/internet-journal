@@ -250,5 +250,6 @@ CKEDITOR_5_CONFIGS = {
 CKEDITOR_5_FILE_UPLOAD_PERMISSION = "staff"
 # Штатная очистка django-ckeditor-5 удаляет файлы по basename в хранилище
 # CKEDITOR_5_FILE_STORAGE и не учитывает структуру каталогов ImageStore.
-# Поэтому она отключена, чтобы не удалять чужие файлы.
+# Поэтому она отключена, чтобы не удалять чужие файлы. Очистка изображений
+# контента выполняется в iju.models (сигналы Article).
 CKEDITOR_5_IMAGE_CLEANUP = False
