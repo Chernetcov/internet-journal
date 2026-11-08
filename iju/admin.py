@@ -11,6 +11,11 @@ class CategoryAdmin(admin.ModelAdmin):
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ("slug", "title", "created", "modified", "publicated", "publish")
     prepopulated_fields = {"slug": ["title"]}
+    change_form_template = "admin/iju/article/change_form.html"
+
+    class Media:
+        css = {"all": ("iju/css/ckeditor/image_library.css",)}
+        js = ("iju/js/ckeditor/image_library.js",)
 
 class ImageStoreAdmin(admin.ModelAdmin):
     list_display = (
