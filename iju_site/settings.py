@@ -181,7 +181,9 @@ IMAGE_STORE_PREVIEWS_FORMAT = 'WEBP'
 #: Качество копий
 IMAGE_STORE_PREVIEWS_QUALITY = 80
 
-CKEDITOR_5_FILE_STORAGE = 'iju.storages.ArticleImageStorage'
+# Загрузка изображений из CKEditor 5 идёт в ImageStore через собственное
+# представление iju.views.ckeditor_image_upload.
+CK_EDITOR_5_UPLOAD_FILE_VIEW_NAME = "ckeditor_image_upload"
 CKEDITOR_5_CONFIGS = {
     'article': {
         'toolbar': {
@@ -246,4 +248,7 @@ CKEDITOR_5_CONFIGS = {
     },
 }
 CKEDITOR_5_FILE_UPLOAD_PERMISSION = "staff"
-CKEDITOR_5_IMAGE_CLEANUP = True
+# Штатная очистка django-ckeditor-5 удаляет файлы по basename в хранилище
+# CKEDITOR_5_FILE_STORAGE и не учитывает структуру каталогов ImageStore.
+# Поэтому она отключена, чтобы не удалять чужие файлы.
+CKEDITOR_5_IMAGE_CLEANUP = False
