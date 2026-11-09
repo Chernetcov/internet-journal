@@ -17,12 +17,11 @@ from iju_site import settings
 
 
 class ImageStore(models.Model):
-
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
     image = models.ImageField(
         upload_to=settings.IMAGE_STORE_UPLOAD_TO,
         help_text=f"Оригинал изображения (сохраняется в исходном формате, max "
-                  f"{settings.IMAGE_STORE_ORIGIN_MAX_SIZE / 1024 /1024} MB, "
+                  f"{settings.IMAGE_STORE_ORIGIN_MAX_SIZE / 1024 / 1024} MB, "
                   f"{settings.IMAGE_STORE_ORIGIN_MAX_HEIGHT}px).",
         validators=[validate_image],
     )
@@ -101,12 +100,19 @@ class Category(models.Model):
     description = models.TextField()
     slug = models.SlugField(unique=True)
 
+    class Meta:
+        verbose_name = "Рубрика"
+        verbose_name_plural = "Рубрики"
+
+    def __str__(self):
+        return self.name
+
 
 class Article(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=128)
     description = models.TextField()
-    content = CKEditor5Field(config_name="article",)
+    content = CKEditor5Field(config_name="article", )
     image = models.ForeignKey(ImageStore, on_delete=models.SET_NULL, null=True)
     publish = models.BooleanField()
     created = models.DateTimeField(auto_now_add=True)
@@ -114,6 +120,13 @@ class Article(models.Model):
     publicated = models.DateTimeField(auto_now_add=True)
     time_to_read = models.IntegerField()
     slug = models.SlugField(unique=True)
+
+    class Meta:
+        verbose_name = "Статья"
+        verbose_name_plural = "Статьи"
+
+    def __str__(self):
+        return self.title
 
 
 _IMG_SRC_RE = re.compile(
@@ -186,8 +199,8 @@ def remember_removed_article_images(sender, instance, **kwargs):
         return
 
     instance._removed_content_image_urls = (
-        extract_content_image_urls(old_content)
-        - extract_content_image_urls(instance.content)
+            extract_content_image_urls(old_content)
+            - extract_content_image_urls(instance.content)
     )
 
 
@@ -207,4 +220,3 @@ def delete_removed_article_images(sender, instance, **kwargs):
 def delete_article_content_images(sender, instance, **kwargs):
     """Удаляет изображения контента при удалении статьи."""
     delete_unused_image_stores(extract_content_image_urls(instance.content))
-
