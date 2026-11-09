@@ -27,6 +27,9 @@
     const IMG_ATTRIBUTES = 'htmlImgAttributes';
     const SPAN_ATTRIBUTE = 'htmlSpan';
 
+    //: Классы `figcaption` — как у подписи в шаблоне статьи.
+    const CAPTION_CLASSES = ['flex', 'flex-wrap', 'justify-between', 'gap-2', 'px-1'];
+
     /**
      * Собственный плагин CKEditor 5: кнопка «Библиотека изображений».
      *
@@ -36,7 +39,7 @@
      *
      *     <figure class="image">
      *       <img ...>
-     *       <figcaption>
+     *       <figcaption class="flex flex-wrap justify-between gap-2 px-1">
      *         <span>Подпись</span>
      *         <span><a href="...">Источник</a></span>
      *       </figcaption>
@@ -60,6 +63,7 @@
 
             editor.ui.componentFactory.add('imageLibrary', locale => this._createButton(locale));
             this._setupCaptionSpans();
+            this._setupCaptionClasses();
         }
 
         destroy() {
@@ -239,6 +243,27 @@
                     return writer.createAttributeElement('span', {}, {
                         priority: 1,
                         id: `iju-image-caption-span-${counter}`,
+                    });
+                },
+                converterPriority: 'high',
+            });
+        }
+
+        /**
+         * Штатный data-downcast ImageCaption создаёт `figcaption` без классов.
+         * Переопределяем его конвертер, чтобы в сохранённом HTML у подписи
+         * были те же классы, что и у `figcaption` в шаблоне статьи.
+         */
+        _setupCaptionClasses() {
+            this.editor.conversion.for('dataDowncast').elementToElement({
+                model: 'caption',
+                view: (modelElement, {writer}) => {
+                    const parent = modelElement.parent;
+                    if (!parent || parent.name !== 'imageBlock') {
+                        return null;
+                    }
+                    return writer.createContainerElement('figcaption', {
+                        class: CAPTION_CLASSES.join(' '),
                     });
                 },
                 converterPriority: 'high',
