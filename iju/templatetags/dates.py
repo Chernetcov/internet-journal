@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, datetime
 
 from django import template
 
@@ -37,7 +37,7 @@ def rus_date(value):
         except (ValueError, TypeError):
             return value
 
-    if not isinstance(value, datetime):
+    if not isinstance(value, (datetime, date)):
         return str(value)
 
     return f"{value.day} {MONTHS_RU[value.month]} {value.year}"
@@ -52,7 +52,7 @@ def month_name(value):
     if value is None:
         return ""
 
-    if isinstance(value, datetime):
+    if isinstance(value, (datetime, date)):
         month = value.month
     elif isinstance(value, int):
         month = value
