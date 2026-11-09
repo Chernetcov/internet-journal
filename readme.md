@@ -11,12 +11,11 @@
 
 ## Планы
 
-- [ ] Запуск c DEBUG=False
+- [ ] Код генерируемый при загрузке картинки с figcaption и srcset
+- [x] Запуск c DEBUG=False
 - [ ] Случайная цитата на главной странице
 - [ ] Тест на проверку локализации дат
 - [ ] Корректный вывод сущностей в админке + Category name в select
-- [x] Image грузится отдельно и только потом присоединятся к статье alt, источник
-- [ ] Image грузится отдельно и только потом присоединятся к статье alt, источник (внутри статьи)
 - [ ] Страница со списком статей с фильтрацией по рубрикам
 - [x] Страница для 404 ошибки
 - [ ] Тест на переход к 404 при несуществующем url.
@@ -38,4 +37,21 @@
 > python manage.py migrate
 
 Команда для запуска локального сервера:
-> python manage.py tailwind runserver   
+> python manage.py tailwind runserver
+
+##  Примечания
+
+### MEDIA_ROOT при запуске на localhost c DEBUG=False 
+При запуске на localhost в режиме DEBUG=False изображения не отображаются, т.к. whitenoise возвращает только 
+статичные файл, а не содержимое MEDIA_ROOT. Чтобы возвращать содержимое MEDIA_ROOT надо добавить запись типа:
+```python
+if not settings.DEBUG:
+    urlpatterns += [
+        path(
+            f"{settings.MEDIA_URL.lstrip('/')}<path:path>",
+            serve,
+            {'document_root': settings.MEDIA_ROOT},
+        ),
+    ]
+```
+но это повлияет на запуск в production, поэтому такая запись не добавлена.

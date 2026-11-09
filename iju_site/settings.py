@@ -16,9 +16,9 @@ environ.Env.read_env(BASE_DIR / '.env', overwrite=True)
 SECRET_KEY = 'django-insecure-g&9r8i36p*li!xyxz-&zx5k+906_!!iz(5n819$$1zsm#wk-$j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG", default=True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -46,6 +46,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -141,6 +142,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = [BASE_DIR / 'assets']
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 TAILWIND_CLI_VERSION = '4.3.3'
 TAILWIND_CLI_SRC_CSS = 'styles/main.css'
 
