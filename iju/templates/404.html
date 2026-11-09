@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block title %}Страница не найдена — {{ block.super }}{% endblock %}
 
@@ -26,9 +26,8 @@
         поиски интересного.
     </p>
 
-    <!-- Home button -->
-    <a
-        href="{% url 'home' %}"
+        <!-- Home button -->
+    <a href="{% url 'index' %}"
         class="inline-flex items-center justify-center gap-3
                px-7 py-3.5
                bg-ink text-paper
@@ -60,7 +59,7 @@
     <!-- Secondary link -->
     <div class="mt-8">
         <a
-            href="{% url 'article_list' %}"
+            href="{% url 'articles' %}"
             class="font-sans text-sm text-terracotta
                    underline underline-offset-4
                    decoration-1 decoration-terracotta/40
