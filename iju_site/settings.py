@@ -244,6 +244,24 @@ CKEDITOR_5_CONFIGS = {
                         "drop-cap",
                     ],
                 },
+                # Плагин «Библиотека изображений» оформляет подпись и источник
+                # в виде <figcaption><span>…</span><span>…</span></figcaption>.
+                # Без разрешения GHS span терялся бы при сохранении
+                # и повторном открытии статьи в редакторе.
+                {
+                    "name": "span",
+                },
+                {
+                    "name": "img",
+                    "attributes": True,
+                    "classes": True,
+                    "styles": True,
+                },
+            ],
+            # Пустой <span> подписи не должен удаляться как пустой
+            # inline-элемент.
+            "allowEmpty": [
+                "span",
             ],
         },
     },

@@ -18,12 +18,31 @@
         return element;
     }
 
+    //: Классы и стиль изображения — как у `img` в шаблоне статьи.
+    const IMAGE_CLASSES = ['max-h-[680px]', 'w-full', 'object-cover'];
+    const IMAGE_STYLES = {'aspect-ratio': '16 / 8.2'};
+
+    //: Атрибуты модели CKEditor, которыми General HTML Support хранит
+    //: `class`/`style` у `img` и сам элемент `span`.
+    const IMG_ATTRIBUTES = 'htmlImgAttributes';
+    const SPAN_ATTRIBUTE = 'htmlSpan';
+
     /**
      * Собственный плагин CKEditor 5: кнопка «Библиотека изображений».
      *
      * Плагин регистрирует элемент панели `imageLibrary`, открывает модальное
      * окно со списком изображений из ImageStore и вставляет выбранное
-     * изображение в содержимое статьи.
+     * изображение в виде разметки:
+     *
+     *     <figure class="image">
+     *       <img ...>
+     *       <figcaption>
+     *         <span>Подпись</span>
+     *         <span><a href="...">Источник</a></span>
+     *       </figcaption>
+     *     </figure>
+     *
+     * `figcaption` не создаётся, если у изображения нет ни подписи, ни источника.
      */
     class ImageLibraryPlugin {
         static get pluginName() {
@@ -40,6 +59,7 @@
             const editor = this.editor;
 
             editor.ui.componentFactory.add('imageLibrary', locale => this._createButton(locale));
+            this._setupCaptionSpans();
         }
 
         destroy() {
@@ -200,23 +220,114 @@
             return card;
         }
 
+        /**
+         * Подпись и источник оформляются в `<span>`. В модели CKEditor GHS
+         * хранит span атрибутом `htmlSpan` на текстовых узлах. Штатный
+         * data-downcast GHS склеивает соседние одинаковые span и вкладывает
+         * ссылку снаружи, поэтому для сохранённого HTML используем свой
+         * конвертер: у каждого span свой `id` (не склеиваются), а низкий
+         * priority оставляет span снаружи ссылки.
+         */
+        _setupCaptionSpans() {
+            const editor = this.editor;
+            let counter = 0;
+
+            editor.conversion.for('dataDowncast').attributeToElement({
+                model: SPAN_ATTRIBUTE,
+                view: (value, {writer}) => {
+                    counter += 1;
+                    return writer.createAttributeElement('span', {}, {
+                        priority: 1,
+                        id: `iju-image-caption-span-${counter}`,
+                    });
+                },
+                converterPriority: 'high',
+            });
+        }
+
+        _createCaptionText(writer, text, extraAttributes) {
+            const attributes = Object.assign({}, extraAttributes);
+            if (this.editor.model.schema.checkAttribute('$text', SPAN_ATTRIBUTE)) {
+                attributes[SPAN_ATTRIBUTE] = {};
+            }
+            return writer.createText(text, attributes);
+        }
+
+        _buildImageBlock(writer, image) {
+            const caption = (image.caption || '').trim();
+            const sourceText = (image.source_text || '').trim();
+            const sourceUrl = (image.source_url || '').trim();
+
+            const attributes = {
+                src: image.url,
+                alt: caption,
+            };
+            if (image.srcset) {
+                attributes.srcset = image.srcset;
+            }
+            if (this.editor.model.schema.checkAttribute('imageBlock', IMG_ATTRIBUTES)) {
+                attributes[IMG_ATTRIBUTES] = {
+                    classes: IMAGE_CLASSES.slice(),
+                    styles: Object.assign({}, IMAGE_STYLES),
+                };
+            }
+
+            const imageBlock = writer.createElement('imageBlock', attributes);
+
+            if (caption || sourceText || sourceUrl) {
+                const captionElement = writer.createElement('caption');
+
+                if (caption) {
+                    writer.append(
+                        this._createCaptionText(writer, caption),
+                        captionElement
+                    );
+                }
+
+                if (sourceText || sourceUrl) {
+                    const linkAttributes = {};
+                    if (sourceUrl) {
+                        linkAttributes.linkHref = sourceUrl;
+                    }
+                    // Если задан только URL, показываем его текстом ссылки,
+                    // иначе ссылка в сохранённой разметке будет пустой.
+                    writer.append(
+                        this._createCaptionText(
+                            writer,
+                            sourceText || sourceUrl,
+                            linkAttributes
+                        ),
+                        captionElement
+                    );
+                }
+
+                writer.append(captionElement, imageBlock);
+            }
+
+            return imageBlock;
+        }
+
         _insertImage(image) {
-            const command = this.editor.commands.get('insertImage');
-            if (!command || !command.isEnabled) {
-                this._status.hidden = false;
-                this._status.textContent = 'Изображение нельзя вставить в текущую позицию.';
+            const editor = this.editor;
+
+            try {
+                editor.model.change(writer => {
+                    const imageBlock = this._buildImageBlock(writer, image);
+                    editor.model.insertContent(
+                        imageBlock,
+                        editor.model.document.selection
+                    );
+                });
+            } catch (error) {
+                console.error('Не удалось вставить изображение.', error);
+                if (this._status) {
+                    this._status.hidden = false;
+                    this._status.textContent =
+                        'Изображение нельзя вставить в текущую позицию.';
+                }
                 return;
             }
 
-            const source = {
-                src: image.url,
-                alt: image.caption || '',
-            };
-            if (image.srcset) {
-                source.srcset = image.srcset;
-            }
-
-            this.editor.execute('insertImage', {source});
             this._close();
         }
     }
