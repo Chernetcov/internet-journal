@@ -18,7 +18,8 @@ IMAGE_STORE_MAX_PAGE_SIZE = 100
 
 def index(request):
     context = {
-        'categories': Category.objects.all()
+        'categories': Category.objects.all(),
+        'latest_articles': Article.objects.all().order_by("-publicated")[:4],
     }
     return render(request, 'index.html', context)
 
