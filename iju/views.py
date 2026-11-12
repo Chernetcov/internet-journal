@@ -31,8 +31,18 @@ class ArticleListView(generic.ListView):
     context_object_name = "articles"
 
     def get_queryset(self):
-        """Return the last 15 published articles."""
-        return Article.objects.filter(publish = True).order_by("-publicated")[:15]
+        """Return the last 15 published articles, optionally filtered by category."""
+        queryset = Article.objects.filter(publish=True)
+        category = self.request.GET.get("category", "").strip()
+        if category:
+            queryset = queryset.filter(category__slug=category)
+        return queryset.order_by("-publicated")[:15]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["categories"] = Category.objects.all()
+        context["category"] = self.request.GET.get("category", "").strip()
+        return context
 
 class ArticleView(generic.DetailView):
     model = Article

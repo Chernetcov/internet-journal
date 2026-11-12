@@ -4,5 +4,26 @@
 {% block description %}Статьи, эссе, рецензии и заметки о философии, литературе, искусстве и кино{% endblock %}
 
 {% block content %}
+  <section class="archive-toolbar border-b border-line pt-7" aria-label="Поиск и фильтры">
+<!--      <form class="article-search" method="get" action="{% url 'articles' %}" role="search">-->
+<!--        <label class="sr-only" for="article-search-input">Поиск по статьям</label>-->
+<!--        <input id="article-search-input" type="search" name="q" value="{{ search_query }}"-->
+<!--               placeholder="Найти статью…" autocomplete="off">-->
+<!--        <button type="submit" aria-label="Искать">-->
+<!--          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg>-->
+<!--        </button>-->
+<!--      </form>-->
+
+    <div class="category-filters" aria-label="Фильтр по рубрике">
+      <a class="filter-chip {% if not category %}is-active{% endif %}"
+         href="{% url 'articles' %}{% if search_query %}?q={{ search_query|urlencode }}{% endif %}">Все статьи</a>
+      {% for button_category in categories %}
+        <a class="filter-chip {% if category == button_category.slug %}is-active{% endif %}"
+           href="?category={{ button_category.slug }}{% if search_query %}&q={{ search_query|urlencode }}{% endif %}">
+          {{ button_category.name }}
+        </a>
+      {% endfor %}
+    </div>
+  </section>
   {% include "articles_block.html" with articles=articles id='articles' group_text='Из редакции' title='Свежие публикации'  %}
 {% endblock %}
