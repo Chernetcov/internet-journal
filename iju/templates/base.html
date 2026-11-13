@@ -29,7 +29,7 @@
           <a class="focus-ring text-sm hover:text-terracotta" href="{% url 'index' %}">Главная</a>
           <a class="focus-ring text-sm hover:text-terracotta" href="{% url 'articles' %}">Статьи</a>
           <a class="focus-ring text-sm hover:text-terracotta" href="#categories">Рубрики</a>
-          <a class="focus-ring text-sm hover:text-terracotta" href="#about">О журнале</a>
+          <a class="focus-ring text-sm hover:text-terracotta" href="{% url 'about' %}">О журнале</a>
         </nav>
 
         <div class="flex items-center gap-2 sm:gap-3">
@@ -55,9 +55,9 @@
       <nav id="mobile-menu" class="hidden border-t border-line py-4 xl:hidden" aria-label="Мобильная навигация">
         <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
           <a class="focus-ring py-2 text-sm hover:text-terracotta" href="#categories">Рубрики</a>
-          <a class="focus-ring py-2 text-sm hover:text-terracotta" href="#latest">Статьи</a>
+          <a class="focus-ring py-2 text-sm hover:text-terracotta" href="{% url 'articles' %}">Статьи</a>
           <a class="focus-ring py-2 text-sm hover:text-terracotta" href="#popular">Популярное</a>
-          <a class="focus-ring py-2 text-sm hover:text-terracotta" href="#about">О журнале</a>
+          <a class="focus-ring py-2 text-sm hover:text-terracotta" href="{% url 'about' %}">О журнале</a>
           <a class="focus-ring col-span-2 bg-ink px-4 py-3 text-center text-sm text-white sm:col-span-4" href="#newsletter">Подписаться на рассылку</a>
         </div>
       </nav>

@@ -23,8 +23,10 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+
 def category(request, category_id):
     return HttpResponse(f"Category page id: {category_id}")
+
 
 class ArticleListView(generic.ListView):
     template_name = "articles.html"
@@ -44,13 +46,15 @@ class ArticleListView(generic.ListView):
         context["category"] = self.request.GET.get("category", "").strip()
         return context
 
+
 class ArticleView(generic.DetailView):
     model = Article
     template_name = "article.html"
     context_object_name = "article"
 
+
 def about(request):
-    return HttpResponse("About page")
+    return render(request, 'about.html')
 
 
 def _positive_int_param(request, name, default, maximum=None):

@@ -1,0 +1,290 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}О журнале — {{ block.super }}{% endblock %}
+{% block description %}
+Культурный код — независимый авторский журнал о философии, литературе, искусстве и кино. Исследуем идеи, произведения и культурные явления.
+{% endblock %}
+
+{% block content %}
+    <section class="px-6 pt-20 pb-32">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="flex items-center gap-3 mb-10">
+                <p class="text-[10px] uppercase tracking-[.2em] text-terracotta">О журнале</p>
+<!--                <span class="font-sans text-xs tracking-[0.22em] uppercase text-graphite">-->
+<!--                    О журнале-->
+<!--                </span>-->
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+
+                <div class="lg:col-span-8">
+                    <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.05] tracking-tight">
+                        Культура —
+                        <span class="italic text-terracotta">это</span>
+                        способ
+                        <span class="block">понимать мир.</span>
+                    </h1>
+                </div>
+
+                <div class="lg:col-span-4 flex flex-col justify-end">
+                    <p class="font-serif text-xl md:text-2xl leading-relaxed text-graphite">
+                        «Культурный код» — авторский журнал о том,
+                        что формирует наше мышление, вдохновляет
+                        на открытия и помогает увидеть привычное
+                        с другой стороны.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- Editorial image -->
+    <section class="px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="relative overflow-hidden aspect-[16/9] md:aspect-[21/9] bg-linen">
+                <img
+                    src="{% static 'images/about_editorial.jpg' %}"
+                    alt="Книги, произведения искусства и предметы культуры"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                >
+                <div class="absolute inset-0 bg-ink/10"></div>
+            </div>
+            <p class="mt-3 text-right font-sans text-xs text-graphite">
+                Пространство идей и смыслов
+            </p>
+        </div>
+    </section>
+
+
+    <!-- Idea -->
+    <section class="px-6 py-24 md:py-32">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+            <div class="lg:col-span-4">
+                <span class="font-sans text-xs tracking-[0.2em] uppercase text-ochre">
+                    01 / Идея
+                </span>
+                <h2 class="mt-5 font-serif text-4xl md:text-5xl leading-tight">
+                    Смотреть глубже. Думать шире.
+                </h2>
+            </div>
+
+            <div class="lg:col-span-6 lg:col-start-7">
+                <p class="font-serif text-xl md:text-2xl leading-relaxed mb-7">
+                    Культура не существует отдельно от нашей повседневной
+                    жизни. Она проявляется в книгах, которые мы читаем,
+                    фильмах, которые смотрим, образах, которые нас окружают,
+                    и вопросах, которые мы задаём себе.
+                </p>
+
+                <p class="font-sans text-base leading-relaxed text-graphite mb-6">
+                    Мы создали этот журнал как пространство для вдумчивого
+                    разговора о культуре. Здесь произведения искусства
+                    становятся поводом для размышлений, философские идеи
+                    помогают по-новому взглянуть на действительность,
+                    а литература и кино открывают новые способы понимать
+                    человека и время.
+                </p>
+
+                <p class="font-sans text-base leading-relaxed text-graphite">
+                    Нам интересно не просто рассказывать о произведениях,
+                    а исследовать смыслы, контексты и связи, которые
+                    делают их частью общего культурного пространства.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Topics -->
+    <section class="bg-[#F1ECE3] px-6 py-24 md:py-32">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="max-w-2xl mb-16">
+                <span class="font-sans text-xs tracking-[0.2em] uppercase text-ochre">
+                    02 / Направления
+                </span>
+                <h2 class="mt-5 font-serif text-4xl md:text-6xl leading-tight">
+                    Четыре взгляда на культуру
+                </h2>
+                <p class="mt-6 font-sans text-base leading-relaxed text-graphite">
+                    Разные формы выражения, разные языки и эпохи —
+                    но общее стремление понять человека и мир вокруг него.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+
+                <!-- Philosophy -->
+                <article class="border-t border-line py-9">
+                    <h3 class="mt-8 font-serif text-3xl md:text-4xl">
+                        Философия
+                    </h3>
+                    <p class="mt-4 max-w-md font-sans text-sm md:text-base leading-relaxed text-graphite">
+                        Идеи, концепции и вопросы, которые помогают
+                        осмыслить человеческое существование, свободу,
+                        общество и природу реальности.
+                    </p>
+                </article>
+
+                <!-- Literature -->
+                <article class="border-t border-line py-9">
+                    <h3 class="mt-8 font-serif text-3xl md:text-4xl">
+                        Литература
+                    </h3>
+                    <p class="mt-4 max-w-md font-sans text-sm md:text-base leading-relaxed text-graphite">
+                        Книги и авторы, художественные миры и персонажи,
+                        через которых мы исследуем человеческий опыт
+                        и внутренний мир человека.
+                    </p>
+                </article>
+
+                <!-- Art -->
+                <article class="border-t border-line py-9">
+                    <h3 class="mt-8 font-serif text-3xl md:text-4xl">
+                        Искусство
+                    </h3>
+                    <p class="mt-4 max-w-md font-sans text-sm md:text-base leading-relaxed text-graphite">
+                        От живописи и архитектуры до визуальной культуры
+                        и дизайна. Образы, формы и эстетические идеи,
+                        меняющие наше восприятие.
+                    </p>
+                </article>
+
+                <!-- Cinema -->
+                <article class="border-t border-line py-9">
+                    <h3 class="mt-8 font-serif text-3xl md:text-4xl">
+                        Кино
+                    </h3>
+                    <p class="mt-4 max-w-md font-sans text-sm md:text-base leading-relaxed text-graphite">
+                        Кинематограф как искусство рассказывать истории,
+                        говорить о времени, обществе, человеческих
+                        отношениях и переживаниях.
+                    </p>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Approach -->
+    <section class="px-6 py-24 md:py-32">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+            <div class="lg:col-span-5">
+                <span class="font-sans text-xs tracking-[0.2em] uppercase text-ochre">
+                    03 / Наш подход
+                </span>
+                <h2 class="mt-5 font-serif text-4xl md:text-5xl leading-tight">
+                    Не просто рассказывать. Исследовать.
+                </h2>
+            </div>
+
+            <div class="lg:col-span-6 lg:col-start-7 space-y-10">
+
+                <div>
+                    <h3 class="font-serif text-2xl mb-3">
+                        Контекст важен
+                    </h3>
+                    <p class="font-sans text-base leading-relaxed text-graphite">
+                        Мы рассматриваем произведения не изолированно,
+                        а в контексте эпохи, идей и культурных процессов,
+                        которые помогли им появиться.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="font-serif text-2xl mb-3">
+                        Смысл важнее шума
+                    </h3>
+                    <p class="font-sans text-base leading-relaxed text-graphite">
+                        Нас интересуют темы, которые не теряют значения
+                        через неделю. Мы выбираем содержательность,
+                        вдумчивость и самостоятельный взгляд.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="font-serif text-2xl mb-3">
+                        Открытость к разным взглядам
+                    </h3>
+                    <p class="font-sans text-base leading-relaxed text-graphite">
+                        Культура не предлагает единственно верных ответов.
+                        Мы ценим возможность спорить, сомневаться,
+                        сопоставлять идеи и формировать собственное мнение.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Closing -->
+    <section class="bg-ink text-paper px-6 py-24 md:py-32">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="max-w-4xl">
+                <span class="font-sans text-xs tracking-[0.2em] uppercase text-[#B47A2C]">
+                    Культурный код
+                </span>
+
+                <h2 class="mt-7 font-serif text-4xl sm:text-5xl md:text-7xl leading-tight">
+                    Мир становится интереснее,
+                    <span class="italic text-[#B47A2C]">
+                        когда начинаешь вглядываться.
+                    </span>
+                </h2>
+
+                <p class="mt-8 max-w-xl font-sans text-base md:text-lg leading-relaxed text-paper/65">
+                    Приглашаем вас к чтению, размышлению и открытиям.
+                    Возможно, именно здесь вы найдёте идею,
+                    которая изменит привычный взгляд на вещи.
+                </p>
+
+                <a
+                    href="{% url 'articles' %}"
+                    class="inline-flex items-center gap-4 mt-10
+                           border border-paper/30 px-7 py-4
+                           font-sans text-sm text-paper
+                           hover:bg-paper hover:text-ink
+                           transition-colors duration-200"
+                >
+                    Перейти к публикациям
+
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        class="w-4 h-4"
+                        aria-hidden="true"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M4.75 12h14.5m-6-6 6 6-6 6"
+                        />
+                    </svg>
+                </a>
+            </div>
+
+            <div class="mt-20 pt-6 border-t border-paper/20 flex justify-between items-center">
+                <span class="font-serif text-sm italic text-paper/60">
+                    Культура как способ понимания мира
+                </span>
+                <span class="font-sans text-xs text-paper/40">
+                    © Культурный код
+                </span>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

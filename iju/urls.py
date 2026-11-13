@@ -13,5 +13,5 @@ urlpatterns = [
         name="ckeditor_image_upload",
     ),
 
-    path("", views.about, name="about"),
+    path("about/", views.about, name="about"),
 ]
