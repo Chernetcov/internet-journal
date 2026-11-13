@@ -17,7 +17,7 @@
   </a>
 
   <!-- Header -->
-  <header class="border-b border-line">
+  <header class="border-b border-border">
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
       <div class="flex min-h-[88px] items-center justify-between gap-4 py-4">
         <a href="{% url 'index' %}" class="focus-ring shrink-0" aria-label="Культурный код — главная">
@@ -43,16 +43,16 @@
         </div>
       </div>
 
-      <form id="search-panel" class="hidden border-t border-line py-4" role="search">
+      <form id="search-panel" class="hidden border-t border-border py-4" role="search">
         <label for="site-search" class="sr-only">Поиск по журналу</label>
         <div class="flex gap-2">
-          <input id="site-search" type="search" placeholder="Найти статью, автора или тему…" class="focus-ring min-w-0 flex-1 border border-line bg-white/70 px-4 py-3 text-sm outline-none">
+          <input id="site-search" type="search" placeholder="Найти статью, автора или тему…" class="focus-ring min-w-0 flex-1 border border-border bg-white/70 px-4 py-3 text-sm outline-none">
           <button class="focus-ring bg-ink px-5 py-3 text-sm text-white hover:bg-terracotta" type="submit">Искать</button>
         </div>
         <p id="search-message" class="mt-2 hidden text-sm text-graphite" aria-live="polite"></p>
       </form>
 
-      <nav id="mobile-menu" class="hidden border-t border-line py-4 xl:hidden" aria-label="Мобильная навигация">
+      <nav id="mobile-menu" class="hidden border-t border-border py-4 xl:hidden" aria-label="Мобильная навигация">
         <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
           <a class="focus-ring py-2 text-sm hover:text-terracotta" href="#categories">Рубрики</a>
           <a class="focus-ring py-2 text-sm hover:text-terracotta" href="{% url 'articles' %}">Статьи</a>
@@ -71,7 +71,7 @@
   </main>
 
   <!-- Footer -->
-  <footer id="about" class="border-t border-line">
+  <footer id="about" class="border-t border-border">
     <div class="mx-auto flex max-w-[1440px] flex-col gap-6 px-4 py-7 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-10">
       <div>
         <a href="#" class="focus-ring font-display text-2xl font-bold tracking-tight">Культурный код</a>
