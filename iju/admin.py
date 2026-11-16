@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from iju.models import Category, Article, ImageStore, WeekArticle
+from iju.models import Category, Article, ImageStore, WeekArticle, Quote
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -16,6 +16,7 @@ class ArticleAdmin(admin.ModelAdmin):
     class Media:
         css = {"all": ("iju/css/ckeditor/image_library.css",)}
         js = ("iju/js/ckeditor/image_library.js",)
+
 
 class ImageStoreAdmin(admin.ModelAdmin):
     list_display = (
@@ -36,10 +37,17 @@ class ImageStoreAdmin(admin.ModelAdmin):
             obj.image.url,
         )
 
+
 class WeekArticleAdmin(admin.ModelAdmin):
     list_display = ("article",)
+
+
+class QuoteAdmin(admin.ModelAdmin):
+    list_display = ("text", "author")
+
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(ImageStore, ImageStoreAdmin)
 admin.site.register(WeekArticle, WeekArticleAdmin)
+admin.site.register(Quote, QuoteAdmin)

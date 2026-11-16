@@ -1,7 +1,9 @@
+import random
 from urllib.parse import urlencode
 
 from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator
+from django.db.models import Max
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.template import loader
@@ -9,7 +11,7 @@ from django.views import generic
 from django.views.decorators.http import require_POST
 from django_ckeditor_5.permissions import check_upload_permission
 
-from iju.models import Article, Category, ImageStore, WeekArticle
+from iju.models import Article, Category, ImageStore, WeekArticle, Quote
 
 #: Размер страницы по умолчанию и максимум для эндпоинта списка изображений.
 IMAGE_STORE_PAGE_SIZE = 20
@@ -18,10 +20,20 @@ IMAGE_STORE_MAX_PAGE_SIZE = 100
 
 def index(request):
     week_article = WeekArticle.objects.first()
+
+    # Получение случайной цитаты
+    pks = list(Quote.objects.values_list("pk", flat=True))
+    if pks:
+        random_pk = random.choice(pks)
+        random_quote = Quote.objects.get(pk=random_pk)
+    else:
+        random_quote = None
+
     context = {
         'categories': Category.objects.all(),
         'latest_articles': Article.objects.all().order_by("-publicated")[:4],
         'week_article': week_article.article if week_article else None,
+        'quote': random_quote,
     }
     return render(request, 'index.html', context)
 
