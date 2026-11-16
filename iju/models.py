@@ -129,6 +129,17 @@ class Article(models.Model):
         return self.title
 
 
+class WeekArticle(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Материал недели"
+        verbose_name_plural = "Материалы недели"
+
+    def __str__(self):
+        return self.article.title
+
+
 _IMG_SRC_RE = re.compile(
     r"""<img\b[^>]*?\ssrc\s*=\s*["']([^"']+)["']""",
     re.IGNORECASE,

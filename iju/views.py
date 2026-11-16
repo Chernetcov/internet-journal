@@ -9,7 +9,7 @@ from django.views import generic
 from django.views.decorators.http import require_POST
 from django_ckeditor_5.permissions import check_upload_permission
 
-from iju.models import Article, Category, ImageStore
+from iju.models import Article, Category, ImageStore, WeekArticle
 
 #: Размер страницы по умолчанию и максимум для эндпоинта списка изображений.
 IMAGE_STORE_PAGE_SIZE = 20
@@ -17,9 +17,11 @@ IMAGE_STORE_MAX_PAGE_SIZE = 100
 
 
 def index(request):
+    week_article = WeekArticle.objects.first()
     context = {
         'categories': Category.objects.all(),
         'latest_articles': Article.objects.all().order_by("-publicated")[:4],
+        'week_article': week_article.article if week_article else None,
     }
     return render(request, 'index.html', context)
 

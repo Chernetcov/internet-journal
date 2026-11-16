@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from iju.models import Category, Article, ImageStore
+from iju.models import Category, Article, ImageStore, WeekArticle
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -36,6 +36,10 @@ class ImageStoreAdmin(admin.ModelAdmin):
             obj.image.url,
         )
 
+class WeekArticleAdmin(admin.ModelAdmin):
+    list_display = ("article",)
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(ImageStore, ImageStoreAdmin)
+admin.site.register(WeekArticle, WeekArticleAdmin)

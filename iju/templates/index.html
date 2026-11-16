@@ -3,80 +3,86 @@
 
 {% block content %}
     <!-- Hero feature -->
-<!--    <section aria-labelledby="hero-title" class="grid gap-5 lg:grid-cols-12 lg:gap-6">-->
-<!--      <article class="group relative isolate min-h-[430px] overflow-hidden bg-ink sm:min-h-[470px] lg:col-span-8 lg:min-h-[500px]">-->
-<!--        <img-->
-<!--          src="https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=1800&q=85"-->
-<!--          alt="Посетитель рассматривает картину в художественном музее"-->
-<!--          class="absolute inset-0 -z-20 h-full w-full object-cover object-center"-->
-<!--          fetchpriority="high"-->
-<!--          onerror="this.style.display='none'"-->
-<!--        >-->
-<!--        <div class="absolute inset-0 -z-10 hero-overlay"></div>-->
-<!--        <div class="flex min-h-[430px] max-w-3xl flex-col items-start justify-end p-6 text-white sm:min-h-[470px] sm:p-9 lg:min-h-[500px] lg:p-11">-->
-<!--          <span class="mb-5 inline-flex border border-white/40 px-3 py-1 text-[10px] uppercase tracking-[.2em] text-white/90">Материал недели · Искусство</span>-->
-<!--          <h1 id="hero-title" class="max-w-2xl font-display text-4xl leading-[1.04] tracking-[-.035em] sm:text-5xl lg:text-6xl">-->
-<!--            Почему мы всё ещё смотрим на старые картины-->
-<!--          </h1>-->
-<!--          <p class="mt-5 max-w-lg font-reading text-lg leading-relaxed text-white/85 sm:text-xl">-->
-<!--            Что делает искусство прошлого актуальным в эпоху цифровых образов.-->
-<!--          </p>-->
-<!--          <div class="mt-7 flex w-full flex-wrap items-center justify-between gap-4">-->
-<!--            <a href="#featured" class="focus-ring inline-flex items-center gap-3 border border-white/70 px-4 py-3 text-sm transition hover:bg-white hover:text-ink">-->
-<!--              Читать статью <span aria-hidden="true">→</span>-->
-<!--            </a>-->
-<!--            <div class="flex items-center gap-2 text-xs tracking-widest text-white/80" aria-label="Слайд 1 из 4">-->
-<!--              <span class="h-1 w-8 bg-white"></span><span class="h-1 w-5 bg-white/45"></span><span class="h-1 w-5 bg-white/45"></span><span class="h-1 w-5 bg-white/45"></span>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </article>-->
+    <section aria-labelledby="hero-title" class="grid gap-5 lg:grid-cols-12 lg:gap-6">
+      <article class="group relative isolate min-h-[430px] overflow-hidden bg-ink sm:min-h-[470px] lg:col-span-8 lg:min-h-[500px]">
+        <a href="article/{{ week_article.slug }}" class="absolute inset-0 z-0" aria-label="{{ week_article.title }}"></a>
+        {% if week_article.image %}
+        <img
+          src="{{ week_article.image.image.url }}"
+          {% if week_article.image.srcset %}srcset="{{ week_article.image.srcset }}"
+          sizes="(min-width: 1520px) 952px, (min-width: 1024px) calc(66vw - 50px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"{% endif %}
+          alt="{{ week_article.image.caption }}"
+          class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+          fetchpriority="high"
+          onerror="this.style.display='none'"
+        >
+        {% endif %}
+        <div class="absolute inset-0 -z-10 hero-overlay bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
 
-<!--      <aside id="popular" class="flex flex-col border-t border-border pt-4 lg:col-span-4 lg:border-t-0 lg:pt-0" aria-labelledby="popular-title">-->
-<!--        <div class="border-l-2 border-terracotta bg-linen/60 px-5 py-5 sm:px-6">-->
-<!--          <span class="font-display text-4xl leading-none text-terracotta" aria-hidden="true">“</span>-->
-<!--          <blockquote class="mt-1 font-display text-2xl italic leading-snug sm:text-[1.7rem]">-->
-<!--            Искусство не воспроизводит видимое, а делает видимым невидимое.-->
-<!--          </blockquote>-->
-<!--          <p class="mt-4 text-[10px] uppercase tracking-[.2em] text-graphite">Приписывается Паулю Клее</p>-->
-<!--        </div>-->
+        <div class="pointer-events-none relative z-10 flex min-h-[430px] max-w-3xl flex-col items-start justify-end p-6 text-white sm:min-h-[470px] sm:p-9 lg:min-h-[500px] lg:p-11">
+          <span class="mb-5 inline-flex border border-white/40 px-3 py-1 text-[10px] uppercase tracking-[.2em] text-white/90">Материал недели · {{ week_article.category }}</span>
+          <h1 id="hero-title" class="max-w-2xl font-display text-4xl leading-[1.04] tracking-[-.035em] sm:text-5xl lg:text-6xl">
+            {{ week_article.title }}
+          </h1>
+          <p class="mt-5 max-w-lg font-reading text-lg leading-relaxed text-white/85 sm:text-xl">
+            {{ week_article.description }}
+          </p>
+          <div class="mt-7 flex w-full flex-wrap items-center justify-start gap-4">
+            <a href="article/{{ week_article.slug }}" class="focus-ring pointer-events-auto inline-flex items-center gap-3 border border-white/70 px-4 py-3 text-sm transition hover:bg-white hover:text-ink">
+              Читать статью <span aria-hidden="true">→</span>
+            </a>
+  <!--            <div class="flex items-center gap-2 text-xs tracking-widest text-white/80" aria-label="Слайд 1 из 4">-->
+  <!--              <span class="h-1 w-8 bg-white"></span><span class="h-1 w-5 bg-white/45"></span><span class="h-1 w-5 bg-white/45"></span><span class="h-1 w-5 bg-white/45"></span>-->
+  <!--            </div>-->
+          </div>
+        </div>
+      </article>
 
-<!--        <div class="mt-6 flex items-end justify-between border-b border-border pb-3">-->
-<!--          <h2 id="popular-title" class="font-display text-3xl tracking-tight">Популярное</h2>-->
-<!--          <a href="#latest" class="focus-ring text-xs text-graphite hover:text-terracotta">Все статьи →</a>-->
-<!--        </div>-->
+      <aside id="popular" class="flex flex-col border-t border-border pt-4 lg:col-span-4 lg:border-t-0 lg:pt-0" aria-labelledby="popular-title">
+        <div class="border-l-2 border-terracotta bg-linen/60 px-5 py-5 sm:px-6">
+          <span class="font-display text-4xl leading-none text-terracotta" aria-hidden="true">“</span>
+          <blockquote class="mt-1 font-display text-2xl italic leading-snug sm:text-[1.7rem]">
+            Искусство не воспроизводит видимое, а делает видимым невидимое.
+          </blockquote>
+          <p class="mt-4 text-[10px] uppercase tracking-[.2em] text-graphite">Приписывается Паулю Клее</p>
+        </div>
 
-<!--        <div class="divide-y divide-line">-->
-<!--          <article class="grid grid-cols-[104px_1fr] gap-4 py-4 sm:grid-cols-[120px_1fr]">-->
-<!--            <a href="#latest" class="image-zoom focus-ring block overflow-hidden bg-linen">-->
-<!--              <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=480&q=80" alt="Кинопроектор в тёмном зале" class="aspect-[4/3] h-full w-full object-cover" loading="lazy">-->
-<!--            </a>-->
-<!--            <div>-->
-<!--              <p class="mb-1 text-[10px] uppercase tracking-[.16em] text-terracotta">Кино · 12 мин</p>-->
-<!--              <h3 class="font-display text-lg leading-snug"><a class="focus-ring hover:text-terracotta" href="#latest">10 фильмов, которые меняют взгляд на человека</a></h3>-->
-<!--            </div>-->
-<!--          </article>-->
-<!--          <article class="grid grid-cols-[104px_1fr] gap-4 py-4 sm:grid-cols-[120px_1fr]">-->
-<!--            <a href="#latest" class="image-zoom focus-ring block overflow-hidden bg-linen">-->
-<!--              <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=480&q=80" alt="Старинные книги на полке" class="aspect-[4/3] h-full w-full object-cover" loading="lazy">-->
-<!--            </a>-->
-<!--            <div>-->
-<!--              <p class="mb-1 text-[10px] uppercase tracking-[.16em] text-terracotta">Литература · 7 мин</p>-->
-<!--              <h3 class="font-display text-lg leading-snug"><a class="focus-ring hover:text-terracotta" href="#latest">Почему мы возвращаемся к классике</a></h3>-->
-<!--            </div>-->
-<!--          </article>-->
-<!--          <article class="grid grid-cols-[104px_1fr] gap-4 py-4 sm:grid-cols-[120px_1fr]">-->
-<!--            <a href="#latest" class="image-zoom focus-ring block overflow-hidden bg-linen">-->
-<!--              <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=480&q=80" alt="Картина в художественной галерее" class="aspect-[4/3] h-full w-full object-cover" loading="lazy">-->
-<!--            </a>-->
-<!--            <div>-->
-<!--              <p class="mb-1 text-[10px] uppercase tracking-[.16em] text-terracotta">Искусство · 10 мин</p>-->
-<!--              <h3 class="font-display text-lg leading-snug"><a class="focus-ring hover:text-terracotta" href="#latest">Что такое красота: от Платона до наших дней</a></h3>-->
-<!--            </div>-->
-<!--          </article>-->
-<!--        </div>-->
-<!--      </aside>-->
-<!--    </section>-->
+        <div class="mt-6 flex items-end justify-between border-b border-border pb-3">
+          <h2 id="popular-title" class="font-display text-3xl tracking-tight">Популярное</h2>
+          <a href="#latest" class="focus-ring text-xs text-graphite hover:text-terracotta">Все статьи →</a>
+        </div>
+
+        <div class="divide-y divide-line">
+          <article class="grid grid-cols-[104px_1fr] gap-4 py-4 sm:grid-cols-[120px_1fr]">
+            <a href="#latest" class="image-zoom focus-ring block overflow-hidden bg-linen">
+              <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=480&q=80" alt="Кинопроектор в тёмном зале" class="aspect-[4/3] h-full w-full object-cover" loading="lazy">
+            </a>
+            <div>
+              <p class="mb-1 text-[10px] uppercase tracking-[.16em] text-terracotta">Кино · 12 мин</p>
+              <h3 class="font-display text-lg leading-snug"><a class="focus-ring hover:text-terracotta" href="#latest">10 фильмов, которые меняют взгляд на человека</a></h3>
+            </div>
+          </article>
+          <article class="grid grid-cols-[104px_1fr] gap-4 py-4 sm:grid-cols-[120px_1fr]">
+            <a href="#latest" class="image-zoom focus-ring block overflow-hidden bg-linen">
+              <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=480&q=80" alt="Старинные книги на полке" class="aspect-[4/3] h-full w-full object-cover" loading="lazy">
+            </a>
+            <div>
+              <p class="mb-1 text-[10px] uppercase tracking-[.16em] text-terracotta">Литература · 7 мин</p>
+              <h3 class="font-display text-lg leading-snug"><a class="focus-ring hover:text-terracotta" href="#latest">Почему мы возвращаемся к классике</a></h3>
+            </div>
+          </article>
+          <article class="grid grid-cols-[104px_1fr] gap-4 py-4 sm:grid-cols-[120px_1fr]">
+            <a href="#latest" class="image-zoom focus-ring block overflow-hidden bg-linen">
+              <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=480&q=80" alt="Картина в художественной галерее" class="aspect-[4/3] h-full w-full object-cover" loading="lazy">
+            </a>
+            <div>
+              <p class="mb-1 text-[10px] uppercase tracking-[.16em] text-terracotta">Искусство · 10 мин</p>
+              <h3 class="font-display text-lg leading-snug"><a class="focus-ring hover:text-terracotta" href="#latest">Что такое красота: от Платона до наших дней</a></h3>
+            </div>
+          </article>
+        </div>
+      </aside>
+    </section>
 
     <!-- Categories -->
     <section id="categories" class="mt-12 border-t border-border pt-7 sm:mt-16" aria-labelledby="categories-title">
